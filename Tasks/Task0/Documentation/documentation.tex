@@ -50,7 +50,7 @@ $0=s*(1-J*\frac{v}{u})*v$ \\
 
 \begin{enumerate}
 \item Umstellen der zweiten Gleichung auf $v$, es gibt zwei Lösungen ($v=0$ und $v=\frac{u}{J}$), die nichttriviale wird genommen: $v=\frac{u}{J}$
-\item Die zweite Gleichung kann in die erste eingesetzt werden: \\ 
+\item Die zweite Gleichung kann in die erste eingesetzt und auf folgende Gleichung umgeformt werden: \\ 
 $0=u^2+u*k_U-U_k*K_u$ \\
 $0=u^2+u*50-15000$ \\
 Es gibt zwei Lösungen: $u_1=100$ und $u_2=-150$ \\
@@ -66,13 +66,15 @@ Periodisch oszillierender Steady State.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{./images/SteadyState}
+  \includegraphics[width=0.6\textwidth]{./images/SteadyState}
   \caption[Steady state: Simulation]{Simulation des Steady states}
   \label{fig:SteadyState}
 \end{figure}
 
 \subsection*{Untersuchung der Stabilität des Steady States}
+Es gibt mehrere Möglichkeiten der Parametervariation, welche anhand einer Simulation überprüft werden müssen. Dazu zählen das Erhöhen von $v$ bzw. $u$, das erniedrigen der beiden Parameter sowie die beiden Parameter gleichzeitig verändern. \\
 
+Der Steady State ist ein Attraktor, d.h. selbst bei Veränderungen wird wieder zum gleichen Stationärzustand zurückgekehrt. In Abbildung \ref{fig:SteadyState} ist der Steady State, welcher im wieder eingenommen wird, ersichtlich. 
 
 
 \appendix  
