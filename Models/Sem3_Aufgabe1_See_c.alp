@@ -108,7 +108,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[Epilimnion.C * Q_ex / Hypolimnion.V]]></Formula>
+						<Formula><![CDATA[Epilimnion.C * Q_ex / Epilimnion.V]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
@@ -123,7 +123,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[Hypolimnion.C * Q_ex / Epilimnion.V]]></Formula>
+						<Formula><![CDATA[Hypolimnion.C * Q_ex / Hypolimnion.V]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
