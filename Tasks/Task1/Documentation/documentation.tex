@@ -30,7 +30,7 @@ fleqn,
 \pagestyle{scrheadings}
 
 %%% heading - left
- \ihead[]{Kevin Wallis}
+ \ihead[]{Marco Sohm, Kevin Wallis}
 
 %%% heading - right
  \ohead[]{Aufgabe 1}
@@ -40,42 +40,35 @@ fleqn,
  \pagenumbering{roman} %% small roman page numbers
  \pagenumbering{arabic} 
 
+\subsection*{Erweiterung des Vorlesungsbeispiels}
+Das Vorlesungsbeispiel wurde nach den angegebenen Vorgaben erweitert. Das erweiterte Beispiel ist als Anhang beigefügt.
 
-\subsection*{Berechnen des nichttrivialen Systemgleichgewichts}
-\label{sec:Systemgleichgewicht}
+\subsection*{Berechnen des Gleichgewichtszustands}
+Im Folgenden werden die beiden Gleichungen für $\frac{dC_1}{dt}$ und $\frac{dC_2}{dt}$ angegeben.
 
-$0=r*(1-\frac{u}{U_k})*u-\frac{w*u*v}{u+K_u}$ \\
-$0=s*(1-J*\frac{v}{u})*v$ \\
-\textbf{Vorgegebene Werte:} $r=2.5;U_k=300;w=5;k_U=50;s=0.225;J=2$
+\begin{itemize}
+\item $\frac{0.34*1e6 * 320}{50*1e6} + \frac{C_2 * 0.5*1e6}{50*1e6} - \frac{0.34*1e6 * C_1}{50*1e6}-0.02 * C_1- \frac{0.5*1e6 * C_1}{50*1e6} = 0$
+\item $\frac{0.5*1e6 * C_1}{100*1e6}-0.002 * C_2- \frac{0.5*1e6 * C_2}{100*1e6} = 0$
+\end{itemize}
 
-\begin{enumerate}
-\item Umstellen der zweiten Gleichung auf $v$, es gibt zwei Lösungen ($v=0$ und $v=\frac{u}{J}$), die nichttriviale wird genommen: $v=\frac{u}{J}$
-\item Die zweite Gleichung kann in die erste eingesetzt und auf folgende Gleichung umgeformt werden: \\ 
-$0=u^2+u*k_U-U_k*K_u$ \\
-$0=u^2+u*50-15000$ \\
-Es gibt zwei Lösungen: $u_1=100$ und $u_2=-150$ \\
-Da es keinen negativen Beutebestand geben kann, kommt nur $u_1$ in Frage, daraus ergibt sich $v=50$
-\end{enumerate}
-
-Somit ist die nichttriviale Lösung $u=100$ und $v=50$. Die berechneten Werte wurden anhand einer Simulation getestet und für passend befunden. Eine Grafik des Simulationsergebnisses kann aus dem Anhang entnommen werden.
-
-\subsection*{Steady State Typ bei den vorgegebenen Anfangswerten}
-$u^{(0)}=50;v^{(0)}=60$
-
-Periodisch oszillierender Steady State.
+Aus der zweiten Gleichung kann $C_2$ wie folgt berechnet werden: $C_2 = 5 * \frac{C_1}{7}$. Dieses Resultat wird in die erste Gleichung eingesetzt. Dadurch ergibt sich die folgende Gleichung:
+$\frac{0.34*1e6 * 320}{50*1e6} + \frac{5 * C_1 * 0.5*1e6}{7 * 50*1e6} - \frac{0.34*1e6 * C_1}{50*1e6}-0.02 * C_1- \frac{0.5*1e6 * C_1}{50*1e6} = 0$
+Das Umstellen dieser Gleichung ergibt $C_1=73.372$. Dieser Ergebnis wird wiederum in das zuvor berechnete $C_2$ eingesetzt, somit ist $C_2=52.409$. Diese Werte wurden mithilfe der Simulation überprüft (Siehe \ref{fig:Gleichgewicht}).\\
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.6\textwidth]{./images/SteadyState}
-  \caption[Steady state: Simulation]{Simulation des Steady states}
-  \label{fig:SteadyState}
+  \includegraphics[width=1\textwidth]{./images/Gleichgewicht}
+  \caption[Gleichgewicht: Simulation]{Simulation des Gleichgewichts}
+  \label{fig:Gleichgewicht}
 \end{figure}
 
-\subsection*{Untersuchung der Stabilität des Steady States}
-Es gibt mehrere Möglichkeiten der Parametervariation, welche anhand einer Simulation überprüft werden müssen. Dazu zählen das Erhöhen von $v$ bzw. $u$, das erniedrigen der beiden Parameter sowie die beiden Parameter gleichzeitig verändern. \\
+Ist das Gleichgewicht stabil? Ja, da das Gleichgewicht bei diesem Beispiel ein Attraktor ist.
+Berechnung nötig?????
 
-Der Steady State ist ein Attraktor, d.h. selbst bei Veränderungen wird wieder zum gleichen Stationärzustand zurückgekehrt. In Abbildung \ref{fig:SteadyState} ist der Steady State, welcher im wieder eingenommen wird, ersichtlich. 
-
+\subsection*{Zwischenschichtenmodel für den Winter}
+Was kann man bezüglich des Gleichgewichts im Vergleich zum vorherigen Zwischenschichtenmodel sagen?
+Berechnen des Gleichgewichts
+Ist das Gleichgewicht stabil?
 
 \appendix  
 \bibliographystyle{plain}
