@@ -355,7 +355,6 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="30">
-						<ExitAction><![CDATA[Lake.Q = 0.34*1e6;]]></ExitAction>
 						<FillColor/>
 					</Properties>
 				</StatechartElement>
@@ -593,105 +592,13 @@
 					<QuantityColumn>
 					</QuantityColumn>
 				</EmbeddedObject>
-				<EmbeddedObject>
-					<Id>1444316653755</Id>
-					<Name><![CDATA[Lake]]></Name>
-					<X>1070</X><Y>40</Y>
-					<Label><X>90</X><Y>105</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<ActiveObjectClass>
-						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
-						<ClassName><![CDATA[Schicht]]></ClassName>
-					</ActiveObjectClass>
-					<GenericParameterSubstitute>
-						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
-							<ClassName><![CDATA[Schicht]]></ClassName>
-							<ItemName><![CDATA[1444229347909]]></ItemName>
-						</GenericParameterSubstituteReference>
-					</GenericParameterSubstitute>
-					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Q]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.34*1e6]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[C_in]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[320]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[k_r]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.002]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[V]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[150*1e6]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[C_start]]></Name>
-						</Parameter>
-					</Parameters>
-					<ReplicationFlag>false</ReplicationFlag>
-					<Replication Class="CodeValue">
-						<Code><![CDATA[100]]></Code>
-					</Replication>
-					<CollectionType>ARRAY_LIST_BASED</CollectionType>
-					<InEnvironment>true</InEnvironment>	
-					<InitialSpeedCode Class="CodeUnitValue">
-						<Code><![CDATA[10]]></Code>
-						<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
-					</InitialSpeedCode>
-					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
-					<XCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</XCode>
-					<YCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</YCode>
-					<ZCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</ZCode>
-					<ColumnCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</ColumnCode>
-					<RowCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</RowCode>
-					<LatitudeCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</LatitudeCode>
-					<LongitudeCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</LongitudeCode>
-					<LocationNameCode Class="CodeValue">
-						<Code><![CDATA[""]]></Code>
-					</LocationNameCode>
-					<InitializationType>SPECIFIED_NUMBER</InitializationType>
-					<InitializationDatabaseTableQuery>
-						<TableReference>
-						</TableReference>
-					</InitializationDatabaseTableQuery>
-					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
-					<QuantityColumn>
-					</QuantityColumn>
-				</EmbeddedObject>
 			</EmbeddedObjects>
 
 			<Charts>
     			<TimePlot>
 					<Id>1444288135764</Id>
 					<Name><![CDATA[ot]]></Name>
-					<X>30</X><Y>360</Y>
+					<X>50</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -754,15 +661,6 @@
 					<Expression><![CDATA[my_dataset1]]></Expression>
 					<Color>-65281</Color>
 					<Expression2><![CDATA[Hypolimnion.C]]></Expression2>
-					<Expression2Flag>true</Expression2Flag>
-						<PointStyle>NONE</PointStyle>
-						<LineWidth>1.0</LineWidth>
-					</DatasetExpression>
-					<DatasetExpression>  
-						<Title><![CDATA[Lake.C Winter]]></Title>
-					<Expression><![CDATA[my_dataset2]]></Expression>
-					<Color>-9728477</Color>
-					<Expression2><![CDATA[Lake.C]]></Expression2>
 					<Expression2Flag>true</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
