@@ -7,7 +7,7 @@
 <AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="7.2.0.201509101926" AlpVersion="7.2.5">
 <Model>
 	<Id>1444225875353</Id>
-	<Name><![CDATA[Sem3_Aufgabe1_See_c]]></Name>
+	<Name><![CDATA[Task1_See_c]]></Name>
 	<EngineVersion>6</EngineVersion>
 	<JavaPackageName><![CDATA[sem3_aufgabe1_see]]></JavaPackageName>
 	<ModelTimeUnit><![CDATA[Week]]></ModelTimeUnit>
@@ -100,10 +100,25 @@
 			<ConnectionsId>1444225875354</ConnectionsId>
 			<Variables>
 				<Variable Class="AuxVariable">
-					<Id>1444308450440</Id>
-					<Name><![CDATA[Ex_EtoH]]></Name>
-					<X>370</X><Y>70</Y>
-					<Label><X>0</X><Y>-20</Y></Label>
+					<Id>1444911744131</Id>
+					<Name><![CDATA[Ex_Ein]]></Name>
+					<X>90</X><Y>20</Y>
+					<Label><X>-15</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[Hypolimnion.C * Q_ex / Epilimnion.V]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1444911744133</Id>
+					<Name><![CDATA[Ex_Eout]]></Name>
+					<X>350</X><Y>110</Y>
+					<Label><X>-20</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -115,10 +130,25 @@
 
 				</Variable>
 				<Variable Class="AuxVariable">
-					<Id>1444308779291</Id>
-					<Name><![CDATA[Ex_HtoE]]></Name>
-					<X>370</X><Y>220</Y>
-					<Label><X>-15</X><Y>20</Y></Label>
+					<Id>1444911744135</Id>
+					<Name><![CDATA[Ex_Hin]]></Name>
+					<X>460</X><Y>110</Y>
+					<Label><X>-20</X><Y>20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[Epilimnion.C * Q_ex / Hypolimnion.V]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1444911744137</Id>
+					<Name><![CDATA[Ex_Hout]]></Name>
+					<X>730</X><Y>20</Y>
+					<Label><X>-25</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -130,9 +160,9 @@
 
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1444236965362</Id>
+					<Id>1444911744129</Id>
 					<Name><![CDATA[Q_ex]]></Name>
-					<X>380</X><Y>150</Y>
+					<X>400</X><Y>20</Y>
 					<Label><X>5</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -146,7 +176,7 @@
 							<Code><![CDATA[0.5*1e6]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
-							<Id>1444236965360</Id>
+							<Id>1444911744127</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -156,13 +186,13 @@
 				</Variable>
 			</Variables>
 			<Dependences>
-				<Link SourceId="1444236965362" TargetId="1444308450440" Polarity="null">
-					<Height>-5.134</Height>
+				<Link SourceId="1444911744129" TargetId="1444911744131" Polarity="null">
+					<Height>0.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-10</X><Y>-80</Y></Direction>
-					<Id>1444237872583</Id>
-					<Name><![CDATA[Q_ex - Ex_EtoH]]></Name>
-					<X>380</X><Y>150</Y>
+					<Direction><X>-310</X><Y>0</Y></Direction>
+					<Id>1444911744120</Id>
+					<Name><![CDATA[Q_ex - Ex_Ein]]></Name>
+					<X>400</X><Y>20</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -171,13 +201,43 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1444236965362" TargetId="1444308779291" Polarity="null">
-					<Height>20.0</Height>
+				<Link SourceId="1444911744129" TargetId="1444911744133" Polarity="null">
+					<Height>0.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-10</X><Y>70</Y></Direction>
-					<Id>1444308782538</Id>
-					<Name><![CDATA[Q_ex - Ex_HtoE]]></Name>
-					<X>380</X><Y>150</Y>
+					<Direction><X>-50</X><Y>90</Y></Direction>
+					<Id>1444911744122</Id>
+					<Name><![CDATA[Q_ex - Ex_Eout]]></Name>
+					<X>400</X><Y>20</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1444911744129" TargetId="1444911744135" Polarity="null">
+					<Height>0.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>60</X><Y>90</Y></Direction>
+					<Id>1444911744124</Id>
+					<Name><![CDATA[Q_ex - Ex_Hin]]></Name>
+					<X>400</X><Y>20</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1444911744129" TargetId="1444911744137" Polarity="null">
+					<Height>0.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>330</X><Y>0</Y></Direction>
+					<Id>1444911744126</Id>
+					<Name><![CDATA[Q_ex - Ex_Hout]]></Name>
+					<X>400</X><Y>20</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -189,56 +249,8 @@
 			</Dependences>
 			<Connectors>
 				<Connector>
-					<Id>1444233724920</Id>
+					<Id>1444911744154</Id>
 					<Name><![CDATA[connector]]></Name>
-					<X>370</X><Y>70</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<SourceId>1444308450440</SourceId>
-					<TargetEmbeddedObjectReference>
-						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
-						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[Epilimnion]]></ItemName>
-					</TargetEmbeddedObjectReference>
-					<TargetConnectableItemReference>
-						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
-						<ClassName><![CDATA[Schicht]]></ClassName>
-						<ItemName><![CDATA[CEx_out]]></ItemName>
-					</TargetConnectableItemReference>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-120</X><Y>40</Y></Point>
-					</Points>
-				</Connector>
-				<Connector>
-					<Id>1444233748004</Id>
-					<Name><![CDATA[connector1]]></Name>
-					<X>370</X><Y>70</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<SourceId>1444308450440</SourceId>
-					<TargetEmbeddedObjectReference>
-						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
-						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[Hypolimnion]]></ItemName>
-					</TargetEmbeddedObjectReference>
-					<TargetConnectableItemReference>
-						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
-						<ClassName><![CDATA[Schicht]]></ClassName>
-						<ItemName><![CDATA[CEx_in]]></ItemName>
-					</TargetConnectableItemReference>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>140</X><Y>40</Y></Point>
-					</Points>
-				</Connector>
-				<Connector>
-					<Id>1444308807984</Id>
-					<Name><![CDATA[connector2]]></Name>
 					<X>90</X><Y>110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -254,21 +266,69 @@
 						<ClassName><![CDATA[Schicht]]></ClassName>
 						<ItemName><![CDATA[CEx_in]]></ItemName>
 					</SourceConnectableItemReference>
-					<TargetId>1444308779291</TargetId>
+					<TargetId>1444911744131</TargetId>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>280</X><Y>110</Y></Point>
+						<Point><X>0</X><Y>-90</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
-					<Id>1444308812827</Id>
-					<Name><![CDATA[connector3]]></Name>
-					<X>370</X><Y>220</Y>
+					<Id>1444911744156</Id>
+					<Name><![CDATA[connector1]]></Name>
+					<X>350</X><Y>110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<SourceId>1444308779291</SourceId>
+					<SourceId>1444911744133</SourceId>
+					<TargetEmbeddedObjectReference>
+						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
+						<ClassName><![CDATA[Main]]></ClassName>
+						<ItemName><![CDATA[Epilimnion]]></ItemName>
+					</TargetEmbeddedObjectReference>
+					<TargetConnectableItemReference>
+						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
+						<ClassName><![CDATA[Schicht]]></ClassName>
+						<ItemName><![CDATA[CEx_out]]></ItemName>
+					</TargetConnectableItemReference>
+					<Points>
+						<Point><X>0</X><Y>0</Y></Point>
+						<Point><X>-100</X><Y>0</Y></Point>
+					</Points>
+				</Connector>
+				<Connector>
+					<Id>1444911744158</Id>
+					<Name><![CDATA[connector2]]></Name>
+					<X>460</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<SourceId>1444911744135</SourceId>
+					<TargetEmbeddedObjectReference>
+						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
+						<ClassName><![CDATA[Main]]></ClassName>
+						<ItemName><![CDATA[Hypolimnion]]></ItemName>
+					</TargetEmbeddedObjectReference>
+					<TargetConnectableItemReference>
+						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
+						<ClassName><![CDATA[Schicht]]></ClassName>
+						<ItemName><![CDATA[CEx_in]]></ItemName>
+					</TargetConnectableItemReference>
+					<Points>
+						<Point><X>0</X><Y>0</Y></Point>
+						<Point><X>110</X><Y>0</Y></Point>
+					</Points>
+				</Connector>
+				<Connector>
+					<Id>1444911744160</Id>
+					<Name><![CDATA[connector3]]></Name>
+					<X>730</X><Y>20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<SourceId>1444911744137</SourceId>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
@@ -281,7 +341,7 @@
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>300</X><Y>-110</Y></Point>
+						<Point><X>0</X><Y>90</Y></Point>
 					</Points>
 				</Connector>
 			</Connectors>
@@ -419,10 +479,105 @@
 
 			<EmbeddedObjects>
 				<EmbeddedObject>
-					<Id>1444233431295</Id>
+					<Id>1444316653755</Id>
+					<Name><![CDATA[Lake]]></Name>
+					<X>1070</X><Y>40</Y>
+					<Label><X>90</X><Y>105</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
+						<ClassName><![CDATA[Schicht]]></ClassName>
+					</ActiveObjectClass>
+					<GenericParameterSubstitute>
+						<GenericParameterSubstituteReference>
+							<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
+							<ClassName><![CDATA[Schicht]]></ClassName>
+							<ItemName><![CDATA[1444229347909]]></ItemName>
+						</GenericParameterSubstituteReference>
+					</GenericParameterSubstitute>
+					<Parameters>
+						<Parameter>
+							<Name><![CDATA[Q]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[0.34*1e6]]></Code>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[C_in]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[320]]></Code>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[k_r]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[0.002]]></Code>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[V]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[150*1e6]]></Code>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[C_start]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</Value>
+						</Parameter>
+					</Parameters>
+					<ReplicationFlag>false</ReplicationFlag>
+					<Replication Class="CodeValue">
+						<Code><![CDATA[100]]></Code>
+					</Replication>
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+					<InEnvironment>true</InEnvironment>	
+					<InitialSpeedCode Class="CodeUnitValue">
+						<Code><![CDATA[10]]></Code>
+						<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
+					</InitialSpeedCode>
+					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
+					<XCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</XCode>
+					<YCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</YCode>
+					<ZCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ZCode>
+					<ColumnCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ColumnCode>
+					<RowCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</RowCode>
+					<LatitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LatitudeCode>
+					<LongitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LongitudeCode>
+					<LocationNameCode Class="CodeValue">
+						<Code><![CDATA[""]]></Code>
+					</LocationNameCode>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationDatabaseTableQuery>
+						<TableReference>
+						</TableReference>
+					</InitializationDatabaseTableQuery>
+					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+					<QuantityColumn>
+					</QuantityColumn>
+				</EmbeddedObject>
+				<EmbeddedObject>
+					<Id>1444911744141</Id>
 					<Name><![CDATA[Epilimnion]]></Name>
 					<X>70</X><Y>60</Y>
-					<Label><X>90</X><Y>-10</Y></Label>
+					<Label><X>70</X><Y>55</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -514,10 +669,10 @@
 					</QuantityColumn>
 				</EmbeddedObject>
 				<EmbeddedObject>
-					<Id>1444233433069</Id>
+					<Id>1444911744145</Id>
 					<Name><![CDATA[Hypolimnion]]></Name>
-					<X>490</X><Y>60</Y>
-					<Label><X>90</X><Y>105</Y></Label>
+					<X>550</X><Y>60</Y>
+					<Label><X>65</X><Y>50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -555,101 +710,6 @@
 							<Name><![CDATA[V]]></Name>
 							<Value Class="CodeValue">
 								<Code><![CDATA[100*1e6]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[C_start]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
-							</Value>
-						</Parameter>
-					</Parameters>
-					<ReplicationFlag>false</ReplicationFlag>
-					<Replication Class="CodeValue">
-						<Code><![CDATA[100]]></Code>
-					</Replication>
-					<CollectionType>ARRAY_LIST_BASED</CollectionType>
-					<InEnvironment>true</InEnvironment>	
-					<InitialSpeedCode Class="CodeUnitValue">
-						<Code><![CDATA[10]]></Code>
-						<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
-					</InitialSpeedCode>
-					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
-					<XCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</XCode>
-					<YCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</YCode>
-					<ZCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</ZCode>
-					<ColumnCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</ColumnCode>
-					<RowCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</RowCode>
-					<LatitudeCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</LatitudeCode>
-					<LongitudeCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</LongitudeCode>
-					<LocationNameCode Class="CodeValue">
-						<Code><![CDATA[""]]></Code>
-					</LocationNameCode>
-					<InitializationType>SPECIFIED_NUMBER</InitializationType>
-					<InitializationDatabaseTableQuery>
-						<TableReference>
-						</TableReference>
-					</InitializationDatabaseTableQuery>
-					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
-					<QuantityColumn>
-					</QuantityColumn>
-				</EmbeddedObject>
-				<EmbeddedObject>
-					<Id>1444316653755</Id>
-					<Name><![CDATA[Lake]]></Name>
-					<X>1070</X><Y>40</Y>
-					<Label><X>90</X><Y>105</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<ActiveObjectClass>
-						<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
-						<ClassName><![CDATA[Schicht]]></ClassName>
-					</ActiveObjectClass>
-					<GenericParameterSubstitute>
-						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[sem3_aufgabe1_see]]></PackageName>
-							<ClassName><![CDATA[Schicht]]></ClassName>
-							<ItemName><![CDATA[1444229347909]]></ItemName>
-						</GenericParameterSubstituteReference>
-					</GenericParameterSubstitute>
-					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Q]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.34*1e6]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[C_in]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[320]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[k_r]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.002]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[V]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[150*1e6]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
