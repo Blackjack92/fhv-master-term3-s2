@@ -355,7 +355,10 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="30">
-						<EntryAction><![CDATA[Epilimnion.C = Lake.C; Hypolimnion.C = Lake.C; Lake.C = 0; Lake.Q = 0;]]></EntryAction>
+						<EntryAction><![CDATA[Epilimnion.C = Lake.C; 
+Hypolimnion.C = Lake.C; 
+Lake.C = 0; 
+Lake.Q = 0;]]></EntryAction>
 						<ExitAction><![CDATA[Lake.Q = 0.34*1e6;]]></ExitAction>
 						<FillColor/>
 					</Properties>
@@ -369,8 +372,17 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="30">
-						<EntryAction><![CDATA[Lake.C = (Epilimnion.C * Epilimnion.V + Hypolimnion.C * Hypolimnion.V) / (Epilimnion.V + Hypolimnion.V); Hypolimnion.C = 0; Hypolimnion.Q = 0; Epilimnion.C = 0; Epilimnion.Q = 0; ]]></EntryAction>
-						<ExitAction><![CDATA[Hypolimnion.Q = 0; Epilimnion.Q = 0.34*1e6;]]></ExitAction>
+						<EntryAction><![CDATA[Lake.C = (Epilimnion.C * Epilimnion.V 
++ Hypolimnion.C * Hypolimnion.V) 
+/ (Epilimnion.V + Hypolimnion.V); 
+
+Hypolimnion.C = 0; 
+Hypolimnion.Q = 0; 
+Epilimnion.C = 0; 
+Epilimnion.Q = 0; ]]></EntryAction>
+						<ExitAction><![CDATA[Hypolimnion.Q = 0;
+Epilimnion.Q = 0.34*1e6;
+ ]]></ExitAction>
 						<FillColor/>
 					</Properties>
 				</StatechartElement>
@@ -404,7 +416,7 @@
 					<IconOffset>20.0</IconOffset>
 					<Properties Source="1444316528975" Target="1444817464147" Trigger="timeout">
 						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[4]]></Code>
+							<Code><![CDATA[8]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
 						</Timeout>
 						<Condition><![CDATA[true]]></Condition>
@@ -434,7 +446,7 @@
 					<IconOffset>20.0</IconOffset>
 					<Properties Source="1444817464147" Target="1444316528975" Trigger="timeout">
 						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[8]]></Code>
+							<Code><![CDATA[4]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
 						</Timeout>
 						<Condition><![CDATA[true]]></Condition>
@@ -845,7 +857,7 @@
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<SamplesToKeep>50000</SamplesToKeep>
+					<SamplesToKeep>2000</SamplesToKeep>
 					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
 					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
