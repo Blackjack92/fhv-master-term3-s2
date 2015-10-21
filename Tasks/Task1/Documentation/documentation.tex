@@ -41,33 +41,37 @@ fleqn,
  \pagenumbering{arabic} 
 
 \subsection*{Erweiterung des Vorlesungsbeispiels}
-Das Vorlesungsbeispiel wurde nach den angegebenen Vorgaben erweitert. Das erweiterte Beispiel ist als Anhang beigefügt.
+Abhängig vom gewählten $C_{start}$ sind unterschiedliche Verhalten in der Simulation erkennbar. Bei der Simulation wurde $C_{start}=0$ festgelegt dadurch ist ersichtlich, dass sich der C Wert der beiden Schichten erhöht und ab einem bestimmten Zeitpunkt (ca. $2000$ ZE (Zeiteinheiten, Wochen)) konstant bleibt. Das es sich hierbei um ein Gleichgewicht handelt, wird im Abschnitt \textit{Berechnen des Gleichgewichtszustands} genauer erläutert. 
 
 \subsection*{Berechnen des Gleichgewichtszustands}
-Im Folgenden werden die beiden Gleichungen für $\frac{dC_1}{dt}$ und $\frac{dC_2}{dt}$ angegeben.
+Im Folgenden werden die beiden Gleichungen für $\frac{dC_E}{dt}$ und $\frac{dC_H}{dt}$ angegeben.
 
 \begin{itemize}
-\item $\frac{0.34*1e6 * 320}{50*1e6} + \frac{C_2 * 0.5*1e6}{50*1e6} - \frac{0.34*1e6 * C_1}{50*1e6}-0.02 * C_1- \frac{0.5*1e6 * C_1}{50*1e6} = 0$
-\item $\frac{0.5*1e6 * C_1}{100*1e6}-0.002 * C_2- \frac{0.5*1e6 * C_2}{100*1e6} = 0$
+\item $\frac{0.34*1e6 * 320}{50*1e6} + \frac{C_H * 0.5*1e6}{50*1e6} - \frac{0.34*1e6 * C_E}{50*1e6}-0.02 * C_E- \frac{0.5*1e6 * C_E}{50*1e6} = 0$
+\item $\frac{0.5*1e6 * C_E}{100*1e6}-0.002 * C_H- \frac{0.5*1e6 * C_H}{100*1e6} = 0$
 \end{itemize}
 
-Aus der zweiten Gleichung kann $C_2$ wie folgt berechnet werden: $C_2 = 5 * \frac{C_1}{7}$. Dieses Resultat wird in die erste Gleichung eingesetzt. Dadurch ergibt sich die folgende Gleichung:
-$\frac{0.34*1e6 * 320}{50*1e6} + \frac{5 * C_1 * 0.5*1e6}{7 * 50*1e6} - \frac{0.34*1e6 * C_1}{50*1e6}-0.02 * C_1- \frac{0.5*1e6 * C_1}{50*1e6} = 0$
-Das Umstellen dieser Gleichung ergibt $C_1=73.372$. Dieser Ergebnis wird wiederum in das zuvor berechnete $C_2$ eingesetzt, somit ist $C_2=52.409$. Diese Werte wurden mithilfe der Simulation überprüft (Siehe \ref{fig:Gleichgewicht}).\\
+Aus der zweiten Gleichung kann $C_H$ wie folgt berechnet werden: $C_H = 5 * \frac{C_E}{7}$. Dieses Resultat wird in die erste Gleichung eingesetzt. Dadurch ergibt sich die folgende Gleichung:
+$\frac{0.34*1e6 * 320}{50*1e6} + \frac{5 * C_E * 0.5*1e6}{7 * 50*1e6} - \frac{0.34*1e6 * C_E}{50*1e6}-0.02 * C_E- \frac{0.5*1e6 * C_E}{50*1e6} = 0$
+Das Umstellen dieser Gleichung ergibt $C_E=73.372$. Dieser Ergebnis wird wiederum in das zuvor berechnete $C_H$ eingesetzt, somit ist $C_H=52.409$. Diese Werte wurden mithilfe der Simulation überprüft (Siehe \ref{fig:Gleichgewicht}).\\
 
-
-Ist das Gleichgewicht stabil? Ja, da das Gleichgewicht bei diesem Beispiel ein Attraktor ist.
-TODO: Berechnung nötig?????
+Ist das Gleichgewicht stabil? Ja, da das Gleichgewicht bei diesem Beispiel ein Attraktor ist. Dies wurde anhand von Events in der Simulation getestet. Ein Teil der Resultate sind im Anhang beigefügt (Siehe \ref{fig:Attraktor} und \ref{fig:Attraktor_1}). Weitere Tests mit Ändern der C-Werte von Epilimnion und Hypolimnion wurden durchgeführt, jedoch dem Anhang nicht beigefügt.
 
 \subsection*{Zwischenschichtenmodel für den Winter}
-Was kann man bezüglich des Gleichgewichts im Vergleich zum vorherigen Zwischenschichtenmodel sagen?
-TODO: Ist das Gleichgewicht stabil? - nicht explizit gefragt
-TODO: Berechnen des Gleichgewichts - Berechnung wird nicht benötigt
+Was kann man bezüglich des Gleichgewichts im Vergleich zum vorherigen Zwischenschichtenmodel sagen? Abhängig vom gewählten $k_R$ im Winter sehen die Simulationsergebnisse anders aus. Da in der Aufgabenstellung keine Angaben in Bezug auf das zu wählende $k_R$ vorhanden war, wurden beide Werte simuliert (Siehe \ref{fig:Stationaer_Sommer_Winter_kRE} und \ref{fig:Stationaer_Sommer_Winter_kRH}). Unabhängig vom gewählten $k_R$ ist das Ergebnis der Simulation periodisch oszillierend. Im Vergleich zum vorherigen Model ist es bei diesem Zwischenschichtenmodel nicht möglich ein Gleichgewicht zu erreichen. Im Folgenden werden die Werte aus den beiden Simulationsergebnissen erläutert.
+\newline
 
+\begin{tabular}{ l | l | l || l | l | l }
+$k_{RE}$ Ab ca. 500 ZE stationär  & $C_{max}$ & $C_{min}$ & 
+$k_{RH}$ Ab ca. 800 ZE stationär  & $C_{max}$ & $C_{min}$ \\
+\hline
+Epilimnion 		& 63.5 & 45 &	& 91 & 84 \\
+Hypolimnion    	& 45 & 43.8 &	& 91 & 84 \\
+Lake           	& 51 & 45 	&	& 91 & 84 \\
+\end{tabular}
 
+\newpage
 \subsection*{Anhang}
-TODO: oder appendix datei verwenden..
-TODO: Abbildungen in den Anhang - oder?
 
 \begin{figure}[h]
   \centering
@@ -76,13 +80,34 @@ TODO: Abbildungen in den Anhang - oder?
   \label{fig:Gleichgewicht}
 \end{figure}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{./images/Gleichgewicht_Attraktor}
+  \caption[Gleichgewicht: Simulation]{Simulation des Attraktors (C Epilimnion größer)}
+  \label{fig:Attraktor}
+\end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{./images/Stationaer_Sommer_Winter}
-  \caption[Steady State: Simulation]{Steady State mit Sommer-Winter-Übergang}
-  \label{fig:Stationaer_Sommer_Winter}
+  \includegraphics[width=1\textwidth]{./images/Gleichgewicht_Attraktor_1}
+  \caption[Gleichgewicht: Simulation]{Simulation des Attraktors (C Epilimnion kleiner)}
+  \label{fig:Attraktor_1}
 \end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{./images/Stationaer_Sommer_Winter_kRE}
+  \caption[Steady State: Simulation]{Steady State mit Sommer-Winter-Übergang $k_{RE}$}
+  \label{fig:Stationaer_Sommer_Winter_kRE}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{./images/Stationaer_Sommer_Winter_kRH}
+  \caption[Steady State: Simulation]{Steady State mit Sommer-Winter-Übergang $k_{RH}$}
+  \label{fig:Stationaer_Sommer_Winter_kRH}
+\end{figure}
+
 
 \appendix  
 \bibliographystyle{plain}
