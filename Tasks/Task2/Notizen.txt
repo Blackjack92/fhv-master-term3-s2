@@ -1,0 +1,3 @@
+konstante Fluktuation oder variable?
+wenn ein mitarbeiter geht, dann erst mit einem delay einen neuen mitarbeiter einstellen (nicht sofort)
+faktoren für arbeitsleistung pro mitarbeiter (verfügbar, in einarbeitung)
