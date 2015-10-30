@@ -1,3 +1,35 @@
-konstante Fluktuation oder variable?
-wenn ein mitarbeiter geht, dann erst mit einem delay einen neuen mitarbeiter einstellen (nicht sofort)
-faktoren für arbeitsleistung pro mitarbeiter (verfügbar, in einarbeitung)
+zu definieren:
+startmitarbeiter
+durchschnittliche fluktationsrate (konstant oder ändert sich?
+neue mitarbeitar einstellen (wieviele, wann? delay)
+einarbeitungszeit neuer mitarbeiter
+
+größenordnungen defineren: arbeit?! zb. Arbeitsstunden ein Mitarbeiter wenn er 100% am Projekt arbeitet dann 8 Stunden von offene Arbeit in erledigte pro Tag
+
+
+teamdynamik ist mit integrationsrate verbunden, weil: die teamdynamik größer ist, je kleiner die integrationsrate (je länger das gleiche team zusammenarbeitet,
+desto besser arbeitet dieses team zusammen)
+
+erledigt (laut aufgabenstellung):
+	Bestimmen Sie dabei zunächst einmal die Vorzeichen der Einflußpfeile, die im Buch fehlen1: + oder -. (siehe dazu .alp datei, dort können Vorzeichen ausgelesen werden)
+
+noch offen (laut aufgabenstellung):
+
+	model:
+		Gehen Sie dann daran, die Flussraten zu bestimmen, nach den Mustern wie sie in den Folien angegeben sind. Passen Sie besonders bei der Einarbeitungsphase 
+		neuer Teammitglieder auf - wie kann man diese Zeit modellieren? Dazu gibt es in den Folien auch eine Modellierungstechnik.
+
+	doku:
+		
+
+
+wurde modelliert:
+	faktoren für arbeitsleistung pro mitarbeiter (verfügbar, in einarbeitung)
+
+folgende punkte könnten modelliert werden:
+	konstante Fluktuation oder variable?
+	wenn ein mitarbeiter geht, dann erst mit einem delay einen neuen mitarbeiter einstellen (nicht sofort)
+
+
+anmerkungen:
+warum ist die abbildung im text auf seite 9 (erster modelentwurf) so lange konstant bei 100 verfügbaren mitarbeitern und fängt erst im mai an zu sinken?

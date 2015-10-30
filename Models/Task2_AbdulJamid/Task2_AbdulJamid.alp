@@ -1517,14 +1517,17 @@
 					<Id>1446031338057</Id>
 					<Name><![CDATA[Interaktionsverlust]]></Name>
 					<X>580</X><Y>360</Y>
-					<Label><X>0</X><Y>-20</Y></Label>
+					<Label><X>20</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[InteraktionsverlustFunktion(VerfügbareMitarbeiter)  - 
-Teamdynamik
-]]></Formula>
+						<Formula><![CDATA[NichtNegativ(
+Leistungsumrechnungfaktor * 
+VerfügbareMitarbeiter * (
+InteraktionsverlustFunktion(VerfügbareMitarbeiter)
+/ Teamdynamik )
+)]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
@@ -1533,15 +1536,19 @@ Teamdynamik
 				<Variable Class="AuxVariable">
 					<Id>1446031338059</Id>
 					<Name><![CDATA[Integrationskosten]]></Name>
-					<X>380</X><Y>350</Y>
-					<Label><X>0</X><Y>-20</Y></Label>
+					<X>380</X><Y>360</Y>
+					<Label><X>30</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[Integrationsverluste_MIE(MitarbeiterInEinarbeitung) / 
-VerfügbareMitarbeiter
-]]></Formula>
+						<Formula><![CDATA[NichtNegativ(
+Leistungsumrechnungfaktor *
+(MitarbeiterInEinarbeitung 
++ VerfügbareMitarbeiter) * (
+Integrationsverluste_MIE(MitarbeiterInEinarbeitung) 
+- Integrationsgewinn_VM(VerfügbareMitarbeiter) )
+)]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
@@ -1550,13 +1557,77 @@ VerfügbareMitarbeiter
 				<Variable Class="AuxVariable">
 					<Id>1446031438576</Id>
 					<Name><![CDATA[Teamdynamik]]></Name>
-					<X>720</X><Y>350</Y>
+					<X>740</X><Y>340</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[(VerfügbareMitarbeiter + Integration) * 1/2]]></Formula>
+						<Formula><![CDATA[TeamdynamikFunktion(Fluktation, Integration, VerfügbareMitarbeiter)]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1446209204675</Id>
+					<Name><![CDATA[MIE]]></Name>
+					<X>440</X><Y>560</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[Leistungsfaktor_MIE * 
+Leistungsumrechnungfaktor * 
+MitarbeiterInEinarbeitung]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1446209206912</Id>
+					<Name><![CDATA[VM]]></Name>
+					<X>520</X><Y>560</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[Leistungsfaktor_VM * 
+Leistungsumrechnungfaktor * 
+VerfügbareMitarbeiter]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1446214924388</Id>
+					<Name><![CDATA[Fluktationsrate]]></Name>
+					<X>720</X><Y>140</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[FluktuationAufstockung/(new DaysOfMonth().getDaysOfMonth(this.date()))]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1446216230482</Id>
+					<Name><![CDATA[Aufstockungsrate]]></Name>
+					<X>120</X><Y>140</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[FluktuationAufstockung/(new DaysOfMonth().getDaysOfMonth(this.date()))]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
@@ -1630,7 +1701,7 @@ VerfügbareMitarbeiter
 					<Id>1446031338009</Id>
 					<Name><![CDATA[Fluktation]]></Name>
 					<X>610</X><Y>200</Y>
-					<Label><X>-20</X><Y>-20</Y></Label>
+					<Label><X>-50</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1641,7 +1712,7 @@ VerfügbareMitarbeiter
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
 							<Point><X>100</X><Y>0</Y></Point>
-							<Point><X>200</X><Y>0</Y></Point>
+							<Point><X>170</X><Y>0</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
@@ -1649,7 +1720,7 @@ VerfügbareMitarbeiter
 					<Id>1446031338011</Id>
 					<Name><![CDATA[Integration]]></Name>
 					<X>340</X><Y>200</Y>
-					<Label><X>-90</X><Y>-20</Y></Label>
+					<Label><X>-70</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1659,7 +1730,7 @@ VerfügbareMitarbeiter
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>145</X><Y>0</Y></Point>
+							<Point><X>120</X><Y>0</Y></Point>
 							<Point><X>270</X><Y>0</Y></Point>
 						</Points>
 					</Properties>
@@ -1667,8 +1738,8 @@ VerfügbareMitarbeiter
 				<Variable Class="Flow">
 					<Id>1446031338013</Id>
 					<Name><![CDATA[Aufstockung]]></Name>
-					<X>60</X><Y>200</Y>
-					<Label><X>-35</X><Y>-25</Y></Label>
+					<X>100</X><Y>200</Y>
+					<Label><X>-40</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1678,8 +1749,8 @@ VerfügbareMitarbeiter
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>150</X><Y>0</Y></Point>
-							<Point><X>280</X><Y>0</Y></Point>
+							<Point><X>80</X><Y>0</Y></Point>
+							<Point><X>240</X><Y>0</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
@@ -1692,9 +1763,10 @@ VerfügbareMitarbeiter
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SourceId="1446031338065" TargetId="1446031338067" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[Leistungsfaktor_MIE * MitarbeiterInEinarbeitung + 
-Leistungsfaktor_VM * VerfügbareMitarbeiter - 
-Integrationskosten - Interaktionsverlust]]></Formula>
+						<Formula><![CDATA[+ MIE 
++ VM 
+- Integrationskosten
+- Interaktionsverlust]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
@@ -1703,56 +1775,6 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 							<Point><X>350</X><Y>0</Y></Point>
 						</Points>
 					</Properties>
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1446031338044</Id>
-					<Name><![CDATA[Fluktationsrate]]></Name>
-					<X>710</X><Y>270</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<NumericType><![CDATA[double]]></NumericType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[8/30d]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1446031338042</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1446031338047</Id>
-					<Name><![CDATA[Aufstockungsrate]]></Name>
-					<X>190</X><Y>270</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<NumericType><![CDATA[double]]></NumericType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[8/30d]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1446031338045</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1446031338050</Id>
@@ -1768,7 +1790,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 						<NumericType><![CDATA[double]]></NumericType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[10d]]></Code>
+							<Code><![CDATA[60d]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1446031338048</Id>
@@ -1793,7 +1815,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 						<NumericType><![CDATA[double]]></NumericType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[1000000]]></Code>
+							<Code><![CDATA[5000]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1446031338051</Id>
@@ -1807,8 +1829,8 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1446046686767</Id>
 					<Name><![CDATA[Leistungsfaktor_MIE]]></Name>
-					<X>410</X><Y>540</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<X>360</X><Y>600</Y>
+					<Label><X>-120</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1832,8 +1854,8 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1446046722002</Id>
 					<Name><![CDATA[Leistungsfaktor_VM]]></Name>
-					<X>560</X><Y>540</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<X>580</X><Y>600</Y>
+					<Label><X>10</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1843,7 +1865,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 						<NumericType><![CDATA[double]]></NumericType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[1]]></Code>
+							<Code><![CDATA[0.9 ]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1446046722000</Id>
@@ -1854,15 +1876,65 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1446209425164</Id>
+					<Name><![CDATA[Leistungsumrechnungfaktor]]></Name>
+					<X>480</X><Y>620</Y>
+					<Label><X>-70</X><Y>20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<NumericType><![CDATA[double]]></NumericType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[8]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1446209425162</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1446216248136</Id>
+					<Name><![CDATA[FluktuationAufstockung]]></Name>
+					<X>420</X><Y>-20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<NumericType><![CDATA[double]]></NumericType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[8d]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1446216248134</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 			</Variables>
 			<Dependences>
-				<Link SourceId="1446031338044" TargetId="1446031338009" Polarity="null">
+				<Link SourceId="1446214924388" TargetId="1446031338009" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>0</X><Y>-70</Y></Direction>
+					<Direction><X>-10</X><Y>60</Y></Direction>
 					<Id>1446031338017</Id>
 					<Name><![CDATA[Fluktationsrate - Fluktation]]></Name>
-					<X>710</X><Y>270</Y>
+					<X>720</X><Y>140</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1871,13 +1943,13 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1446031338047" TargetId="1446031338013" Polarity="null">
+				<Link SourceId="1446216230482" TargetId="1446031338013" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>20</X><Y>-70</Y></Direction>
+					<Direction><X>60</X><Y>60</Y></Direction>
 					<Id>1446031338019</Id>
 					<Name><![CDATA[Aufstockungsrate - Aufstockung]]></Name>
-					<X>190</X><Y>270</Y>
+					<X>120</X><Y>140</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1887,7 +1959,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<Delay>false</Delay>
 				</Link>
 				<Link SourceId="1446031338055" TargetId="1446031338011" Polarity="null">
-					<Height>20.0</Height>
+					<Height>10.122</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>75</X><Y>90</Y></Direction>
 					<Id>1446031338021</Id>
@@ -1961,12 +2033,12 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1446031338061" TargetId="1446031338015" Polarity="null">
-					<Height>-20.286</Height>
+				<Link SourceId="1446031338061" TargetId="1446209206912" Polarity="null">
+					<Height>-33.488</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-120</X><Y>280</Y></Direction>
+					<Direction><X>-90</X><Y>360</Y></Direction>
 					<Id>1446031338031</Id>
-					<Name><![CDATA[VerfügbareMitarbeiter - Gesamtproduktionsleistung]]></Name>
+					<Name><![CDATA[VerfügbareMitarbeiter - VM]]></Name>
 					<X>610</X><Y>200</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1976,12 +2048,12 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1446031338063" TargetId="1446031338015" Polarity="null">
-					<Height>-68.837</Height>
+				<Link SourceId="1446031338063" TargetId="1446209204675" Polarity="null">
+					<Height>-35.66</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>150</X><Y>280</Y></Direction>
+					<Direction><X>100</X><Y>360</Y></Direction>
 					<Id>1446031338033</Id>
-					<Name><![CDATA[MitarbeiterInEinarbeitung - Gesamtproduktionsleistung]]></Name>
+					<Name><![CDATA[MitarbeiterInEinarbeitung - MIE]]></Name>
 					<X>340</X><Y>200</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1994,7 +2066,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 				<Link SourceId="1446031338063" TargetId="1446031338059" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>40</X><Y>150</Y></Direction>
+					<Direction><X>40</X><Y>160</Y></Direction>
 					<Id>1446031338035</Id>
 					<Name><![CDATA[MitarbeiterInEinarbeitung - Integrationskosten]]></Name>
 					<X>340</X><Y>200</Y>
@@ -2009,7 +2081,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 				<Link SourceId="1446031338061" TargetId="1446031338059" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-230</X><Y>150</Y></Direction>
+					<Direction><X>-230</X><Y>160</Y></Direction>
 					<Id>1446031338037</Id>
 					<Name><![CDATA[VerfügbareMitarbeiter - Integrationskosten]]></Name>
 					<X>610</X><Y>200</Y>
@@ -2024,10 +2096,10 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 				<Link SourceId="1446031338059" TargetId="1446031338015" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>110</X><Y>130</Y></Direction>
+					<Direction><X>110</X><Y>120</Y></Direction>
 					<Id>1446031338039</Id>
 					<Name><![CDATA[Integrationskosten - Gesamtproduktionsleistung]]></Name>
-					<X>380</X><Y>350</Y>
+					<X>380</X><Y>360</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2052,9 +2124,9 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<Delay>false</Delay>
 				</Link>
 				<Link SourceId="1446031338011" TargetId="1446031438576" Polarity="null">
-					<Height>328.981</Height>
+					<Height>276.463</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>235</X><Y>150</Y></Direction>
+					<Direction><X>255</X><Y>140</Y></Direction>
 					<Id>1446031482301</Id>
 					<Name><![CDATA[Integration - Teamdynamik]]></Name>
 					<X>485</X><Y>200</Y>
@@ -2069,7 +2141,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 				<Link SourceId="1446031338061" TargetId="1446031438576" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>110</X><Y>150</Y></Direction>
+					<Direction><X>130</X><Y>140</Y></Direction>
 					<Id>1446031499080</Id>
 					<Name><![CDATA[VerfügbareMitarbeiter - Teamdynamik]]></Name>
 					<X>610</X><Y>200</Y>
@@ -2084,10 +2156,10 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 				<Link SourceId="1446031438576" TargetId="1446031338057" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-140</X><Y>10</Y></Direction>
+					<Direction><X>-160</X><Y>20</Y></Direction>
 					<Id>1446031510713</Id>
 					<Name><![CDATA[Teamdynamik - Interaktionsverlust]]></Name>
-					<X>720</X><Y>350</Y>
+					<X>740</X><Y>340</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2096,13 +2168,13 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1446046686767" TargetId="1446031338015" Polarity="null">
+				<Link SourceId="1446046686767" TargetId="1446209204675" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>80</X><Y>-60</Y></Direction>
+					<Direction><X>80</X><Y>-40</Y></Direction>
 					<Id>1446046762687</Id>
-					<Name><![CDATA[Leistungsfaktor_MIE - Gesamtproduktionsleistung]]></Name>
-					<X>410</X><Y>540</Y>
+					<Name><![CDATA[Leistungsfaktor_MIE - MIE]]></Name>
+					<X>360</X><Y>600</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2111,13 +2183,148 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1446046722002" TargetId="1446031338015" Polarity="null">
+				<Link SourceId="1446046722002" TargetId="1446209206912" Polarity="null">
 					<Height>-12.762</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-70</X><Y>-60</Y></Direction>
+					<Direction><X>-60</X><Y>-40</Y></Direction>
 					<Id>1446046770657</Id>
-					<Name><![CDATA[Leistungsfaktor_VM - Gesamtproduktionsleistung]]></Name>
-					<X>560</X><Y>540</Y>
+					<Name><![CDATA[Leistungsfaktor_VM - VM]]></Name>
+					<X>580</X><Y>600</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446209425164" TargetId="1446209204675" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-40</X><Y>-60</Y></Direction>
+					<Id>1446209489311</Id>
+					<Name><![CDATA[Leistungsumrechnungfaktor - MIE]]></Name>
+					<X>480</X><Y>620</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446209425164" TargetId="1446209206912" Polarity="null">
+					<Height>-25.909</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>40</X><Y>-60</Y></Direction>
+					<Id>1446209494452</Id>
+					<Name><![CDATA[Leistungsumrechnungfaktor - VM]]></Name>
+					<X>480</X><Y>620</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446209206912" TargetId="1446031338015" Polarity="null">
+					<Height>-22.604</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-30</X><Y>-80</Y></Direction>
+					<Id>1446209550268</Id>
+					<Name><![CDATA[VM - Gesamtproduktionsleistung]]></Name>
+					<X>520</X><Y>560</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446209204675" TargetId="1446031338015" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>50</X><Y>-80</Y></Direction>
+					<Id>1446209566831</Id>
+					<Name><![CDATA[MIE - Gesamtproduktionsleistung]]></Name>
+					<X>440</X><Y>560</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446209425164" TargetId="1446031338059" Polarity="null">
+					<Height>248.225</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-100</X><Y>-260</Y></Direction>
+					<Id>1446211375512</Id>
+					<Name><![CDATA[Leistungsumrechnungfaktor - Integrationskosten]]></Name>
+					<X>480</X><Y>620</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446209425164" TargetId="1446031338057" Polarity="null">
+					<Height>-226.753</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>100</X><Y>-260</Y></Direction>
+					<Id>1446211380712</Id>
+					<Name><![CDATA[Leistungsumrechnungfaktor - Interaktionsverlust]]></Name>
+					<X>480</X><Y>620</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446031338009" TargetId="1446031438576" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>30</X><Y>140</Y></Direction>
+					<Id>1446212874452</Id>
+					<Name><![CDATA[Fluktation - Teamdynamik]]></Name>
+					<X>710</X><Y>200</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446216248136" TargetId="1446214924388" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>300</X><Y>160</Y></Direction>
+					<Id>1446216326997</Id>
+					<Name><![CDATA[FluktuationAufstockung - Fluktationsrate]]></Name>
+					<X>420</X><Y>-20</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446216248136" TargetId="1446216230482" Polarity="null">
+					<Height>-26.511</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-300</X><Y>160</Y></Direction>
+					<Id>1446216331247</Id>
+					<Name><![CDATA[FluktuationAufstockung - Aufstockungsrate]]></Name>
+					<X>420</X><Y>-20</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2198,6 +2405,55 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					</Properties>	
 				</StatechartElement>
 			</StatechartElements>
+			<Functions>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1446212936527</Id>
+					<Name><![CDATA[TeamdynamikFunktion]]></Name>
+					<X>40</X><Y>300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[fluctuation]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[integration]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[employees]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Body><![CDATA[double teamdyn = (employees / (new DaysOfMonth().getDaysOfMonth(this.date())))
+/ (fluctuation + integration);
+double factor = 40;
+double teamdyn_1 = teamdyn / factor;
+if (teamdyn_1 < 0.5) {
+	teamdyn_1 = 0.5;
+}
+return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1446217519327</Id>
+					<Name><![CDATA[NichtNegativ]]></Name>
+					<X>40</X><Y>440</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[value]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Body><![CDATA[return value < 0 ? 0 : value;]]></Body>
+				</Function>
+			</Functions>
 			<TableFunctions>
 				<TableFunction AccessType="public" StaticFunction="true">
 					<Id>1446032128239</Id>
@@ -2207,7 +2463,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<InterpolationMethod>SPLINE</InterpolationMethod>
+					<InterpolationMethod>LINEAR</InterpolationMethod>
 					<OutOfRangeBehaviour>ERROR</OutOfRangeBehaviour>
 					<OutOfRangeCustomValue><![CDATA[0.0]]></OutOfRangeCustomValue>
 					<ApproximationOrder><![CDATA[1]]></ApproximationOrder>
@@ -2218,12 +2474,16 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<Argument><![CDATA[6.0]]></Argument>
 					<Argument><![CDATA[30.0]]></Argument>
 					<Argument><![CDATA[100.0]]></Argument>
-					<Value><![CDATA[3.0]]></Value>
-					<Value><![CDATA[24.0]]></Value>
-					<Value><![CDATA[35.0]]></Value>
-					<Value><![CDATA[40.0]]></Value>
-					<Value><![CDATA[55.0]]></Value>
-					<Value><![CDATA[58.0]]></Value>
+					<Argument><![CDATA[200.0]]></Argument>
+					<Argument><![CDATA[400.0]]></Argument>
+					<Value><![CDATA[0.0]]></Value>
+					<Value><![CDATA[0.1]]></Value>
+					<Value><![CDATA[0.125]]></Value>
+					<Value><![CDATA[0.15]]></Value>
+					<Value><![CDATA[0.24]]></Value>
+					<Value><![CDATA[0.3]]></Value>
+					<Value><![CDATA[0.333]]></Value>
+					<Value><![CDATA[0.333]]></Value>
 				</TableFunction>
 				<TableFunction AccessType="public" StaticFunction="true">
 					<Id>1446047801280</Id>
@@ -2233,49 +2493,57 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<InterpolationMethod>SPLINE</InterpolationMethod>
+					<InterpolationMethod>LINEAR</InterpolationMethod>
 					<OutOfRangeBehaviour>ERROR</OutOfRangeBehaviour>
 					<OutOfRangeCustomValue><![CDATA[0.0]]></OutOfRangeCustomValue>
 					<ApproximationOrder><![CDATA[1]]></ApproximationOrder>
 // arguments and values
 					<Argument><![CDATA[0.0]]></Argument>
+					<Argument><![CDATA[1.0]]></Argument>
 					<Argument><![CDATA[2.0]]></Argument>
 					<Argument><![CDATA[4.0]]></Argument>
 					<Argument><![CDATA[6.0]]></Argument>
-					<Argument><![CDATA[30.0]]></Argument>
+					<Argument><![CDATA[8.0]]></Argument>
+					<Argument><![CDATA[20.0]]></Argument>
+					<Argument><![CDATA[40.0]]></Argument>
 					<Argument><![CDATA[100.0]]></Argument>
-					<Value><![CDATA[3.0]]></Value>
-					<Value><![CDATA[24.0]]></Value>
-					<Value><![CDATA[35.0]]></Value>
-					<Value><![CDATA[40.0]]></Value>
-					<Value><![CDATA[55.0]]></Value>
-					<Value><![CDATA[58.0]]></Value>
+					<Value><![CDATA[0.0]]></Value>
+					<Value><![CDATA[0.08]]></Value>
+					<Value><![CDATA[0.11]]></Value>
+					<Value><![CDATA[0.12]]></Value>
+					<Value><![CDATA[0.15]]></Value>
+					<Value><![CDATA[0.22]]></Value>
+					<Value><![CDATA[0.333]]></Value>
+					<Value><![CDATA[0.333]]></Value>
+					<Value><![CDATA[0.333]]></Value>
 				</TableFunction>
 				<TableFunction AccessType="public" StaticFunction="true">
-					<Id>1446049734711</Id>
-					<Name><![CDATA[TeamdynamikFunktion]]></Name>
+					<Id>1446211942722</Id>
+					<Name><![CDATA[Integrationsgewinn_VM]]></Name>
 					<X>40</X><Y>400</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<InterpolationMethod>SPLINE</InterpolationMethod>
+					<InterpolationMethod>LINEAR</InterpolationMethod>
 					<OutOfRangeBehaviour>ERROR</OutOfRangeBehaviour>
 					<OutOfRangeCustomValue><![CDATA[0.0]]></OutOfRangeCustomValue>
 					<ApproximationOrder><![CDATA[1]]></ApproximationOrder>
 // arguments and values
 					<Argument><![CDATA[0.0]]></Argument>
-					<Argument><![CDATA[2.0]]></Argument>
-					<Argument><![CDATA[4.0]]></Argument>
-					<Argument><![CDATA[6.0]]></Argument>
-					<Argument><![CDATA[30.0]]></Argument>
+					<Argument><![CDATA[80.0]]></Argument>
+					<Argument><![CDATA[84.0]]></Argument>
+					<Argument><![CDATA[90.0]]></Argument>
 					<Argument><![CDATA[100.0]]></Argument>
-					<Value><![CDATA[3.0]]></Value>
-					<Value><![CDATA[24.0]]></Value>
-					<Value><![CDATA[35.0]]></Value>
-					<Value><![CDATA[40.0]]></Value>
-					<Value><![CDATA[55.0]]></Value>
-					<Value><![CDATA[58.0]]></Value>
+					<Argument><![CDATA[200.0]]></Argument>
+					<Argument><![CDATA[300.0]]></Argument>
+					<Value><![CDATA[0.0]]></Value>
+					<Value><![CDATA[0.07]]></Value>
+					<Value><![CDATA[0.12]]></Value>
+					<Value><![CDATA[0.14]]></Value>
+					<Value><![CDATA[0.18]]></Value>
+					<Value><![CDATA[0.2]]></Value>
+					<Value><![CDATA[0.2]]></Value>
 				</TableFunction>
 			</TableFunctions>
 			<AgentLinks>
@@ -2339,7 +2607,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
     			<TimePlot>
 					<Id>1446031337987</Id>
 					<Name><![CDATA[plot]]></Name>
-					<X>540</X><Y>590</Y>
+					<X>1000</X><Y>0</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2414,7 +2682,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
     			<TimeStackChart>
 					<Id>1446031338003</Id>
 					<Name><![CDATA[chart]]></Name>
-					<X>50</X><Y>580</Y>
+					<X>1000</X><Y>360</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2482,7 +2750,7 @@ Integrationskosten - Interaktionsverlust]]></Formula>
     			<TimeStackChart>
 					<Id>1446031338007</Id>
 					<Name><![CDATA[chart1]]></Name>
-					<X>40</X><Y>880</Y>
+					<X>1000</X><Y>680</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2547,6 +2815,81 @@ Integrationskosten - Interaktionsverlust]]></Formula>
 					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimeStackChart>
+    			<TimePlot>
+					<Id>1446218129262</Id>
+					<Name><![CDATA[plot1]]></Name>
+					<X>1400</X><Y>0</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1446105600000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>420</Width>
+					<Height>330</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>340</Width>
+						<Height>240</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<Persistent>true</Persistent>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[OffeneArbeit]]></Title>
+					<Expression><![CDATA[my_dataset]]></Expression>
+					<Color>-16711936</Color>
+					<Expression2><![CDATA[OffeneArbeit]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[ErledigteArbeit]]></Title>
+					<Expression><![CDATA[my_dataset1]]></Expression>
+					<Color>-16777216</Color>
+					<Expression2><![CDATA[ErledigteArbeit]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<SamplesToKeep>100</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
 			</Charts>
 
 		</ActiveObjectClass>
@@ -2911,18 +3254,12 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 
 			<Parameters>			
 				<Parameter>
-					<ParameterName><![CDATA[Fluktationsrate]]></ParameterName>
-				</Parameter>
-				<Parameter>
-					<ParameterName><![CDATA[Aufstockungsrate]]></ParameterName>
-				</Parameter>
-				<Parameter>
 					<ParameterName><![CDATA[Einarbeitungszeit]]></ParameterName>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[OffeneArbeitStart]]></ParameterName>
 					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[100000]]></Code>
+						<Code><![CDATA[50000]]></Code>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
@@ -2930,6 +3267,12 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[Leistungsfaktor_VM]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[Leistungsumrechnungfaktor]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[FluktuationAufstockung]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties 
@@ -2971,6 +3314,55 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 			</ModelTimeProperties>
 		</SimulationExperiment>	
 	</Experiments>
+	<JavaClasses>
+		<!--   =========   Java Class   ========  -->
+		<JavaClass>
+			<Id>1446214795304</Id>
+			<Name><![CDATA[DaysOfMonth]]></Name>
+			<Text><![CDATA[import java.time.YearMonth;
+/**
+ * DaysOfMonth
+ */	
+public class DaysOfMonth implements Serializable {
+
+	private int previousMonth;
+	private int previousDaysOfMonth;
+    /**
+     * Default constructor
+     */
+    public DaysOfMonth() {
+    	previousMonth = 0;
+    	previousDaysOfMonth = 0;
+    }
+    
+    public int getDaysOfMonth(Date aDate) {
+    	Calendar cal = Calendar.getInstance();
+    	cal.setTime(aDate);
+    	int month = cal.get(Calendar.MONTH) + 1;
+    	if (previousMonth == month) {
+    		return previousDaysOfMonth;
+    	}
+    	int year = cal.get(Calendar.DAY_OF_MONTH);
+    	YearMonth ym = YearMonth.of(year, month);
+    	previousMonth = month;
+    	previousDaysOfMonth = ym.lengthOfMonth();
+    	return previousDaysOfMonth;
+    }
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+	/**
+	 * This number is here for model snapshot storing purpose<br>
+	 * It needs to be changed when this class gets changed
+	 */ 
+	private static final long serialVersionUID = 1L;
+
+}]]></Text>
+		</JavaClass>
+	</JavaClasses>
     <RequiredLibraryReference>
 		<LibraryName><![CDATA[com.anylogic.libraries.processmodeling]]></LibraryName>
 		<VersionMajor>7</VersionMajor>
