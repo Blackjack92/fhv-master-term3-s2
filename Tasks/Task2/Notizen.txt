@@ -1,6 +1,6 @@
 zu definieren:
 startmitarbeiter
-durchschnittliche fluktationsrate (konstant oder ändert sich?
+durchschnittliche fluktationsrate (konstant oder ändert sich?)
 neue mitarbeitar einstellen (wieviele, wann? delay)
 einarbeitungszeit neuer mitarbeiter
 
@@ -25,10 +25,10 @@ noch offen (laut aufgabenstellung):
 
 wurde modelliert:
 	faktoren für arbeitsleistung pro mitarbeiter (verfügbar, in einarbeitung)
+	wenn ein mitarbeiter geht, dann erst mit einem delay einen neuen mitarbeiter einstellen (nicht sofort)
 
 folgende punkte könnten modelliert werden:
 	konstante Fluktuation oder variable?
-	wenn ein mitarbeiter geht, dann erst mit einem delay einen neuen mitarbeiter einstellen (nicht sofort)
 
 
 anmerkungen:

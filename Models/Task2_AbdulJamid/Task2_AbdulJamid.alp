@@ -1557,7 +1557,7 @@ Integrationsverluste_MIE(MitarbeiterInEinarbeitung)
 				<Variable Class="AuxVariable">
 					<Id>1446031438576</Id>
 					<Name><![CDATA[Teamdynamik]]></Name>
-					<X>740</X><Y>340</Y>
+					<X>750</X><Y>340</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1612,7 +1612,7 @@ VerfügbareMitarbeiter]]></Formula>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[FluktuationAufstockung/(new DaysOfMonth().getDaysOfMonth(this.date()))]]></Formula>
+						<Formula><![CDATA[FluktuationAufstockung/(DaysOfMonth.getInstance().getDaysOfMonth(this.date()))]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
@@ -1627,8 +1627,23 @@ VerfügbareMitarbeiter]]></Formula>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[FluktuationAufstockung/(new DaysOfMonth().getDaysOfMonth(this.date()))]]></Formula>
+						<Formula><![CDATA[delay(FluktuationAufstockung, Einstellungsverzögerung) 
+/ (DaysOfMonth.getInstance().getDaysOfMonth(this.date()))]]></Formula>
 						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1446236516294</Id>
+					<Name><![CDATA[Discrepancy]]></Name>
+					<X>885</X><Y>883</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[S_Goal - S]]></Formula>
 						<Color/>
 					</Properties>
 
@@ -1637,7 +1652,7 @@ VerfügbareMitarbeiter]]></Formula>
 					<Id>1446031338061</Id>
 					<Name><![CDATA[VerfügbareMitarbeiter]]></Name>
 					<X>610</X><Y>200</Y>
-					<Label><X>-50</X><Y>-55</Y></Label>
+					<Label><X>-15</X><Y>-55</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1645,7 +1660,7 @@ VerfügbareMitarbeiter]]></Formula>
 					<EquationStyle>classic</EquationStyle>
 					<Width>80</Width>
 					<Height>80</Height>
-						<InitialValue><![CDATA[100]]></InitialValue>
+						<InitialValue><![CDATA[VerfügbareMitarbeiterStart]]></InitialValue>
 						<Color/>
 					</Properties>
 				</Variable>
@@ -1693,6 +1708,22 @@ VerfügbareMitarbeiter]]></Formula>
 					<EquationStyle>classic</EquationStyle>
 					<Width>80</Width>
 					<Height>80</Height>
+						<InitialValue><![CDATA[0]]></InitialValue>
+						<Color/>
+					</Properties>
+				</Variable>
+				<Variable Class="StockVariable">
+					<Id>1446236516296</Id>
+					<Name><![CDATA[S]]></Name>
+					<X>885</X><Y>813</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties Array="false">
+					<EquationStyle>classic</EquationStyle>
+					<Width>20</Width>
+					<Height>20</Height>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color/>
 					</Properties>
@@ -1776,6 +1807,25 @@ VerfügbareMitarbeiter]]></Formula>
 						</Points>
 					</Properties>
 				</Variable>
+				<Variable Class="Flow">
+					<Id>1446236516271</Id>
+					<Name><![CDATA[flow]]></Name>
+					<X>685</X><Y>813</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TargetId="1446236516296" External="false" Constant="false" Array="false">
+						<Formula><![CDATA[Discrepancy/ATF]]></Formula>
+						<Color/>
+						<ValveIndex>1</ValveIndex>
+						<Points>
+							<Point><X>0</X><Y>0</Y></Point>
+							<Point><X>100</X><Y>0</Y></Point>
+							<Point><X>200</X><Y>0</Y></Point>
+						</Points>
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1446031338050</Id>
 					<Name><![CDATA[Einarbeitungszeit]]></Name>
@@ -1815,7 +1865,7 @@ VerfügbareMitarbeiter]]></Formula>
 						<NumericType><![CDATA[double]]></NumericType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[5000]]></Code>
+							<Code><![CDATA[100000]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1446031338051</Id>
@@ -1926,6 +1976,106 @@ VerfügbareMitarbeiter]]></Formula>
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1446233205525</Id>
+					<Name><![CDATA[Einstellungsverzögerung]]></Name>
+					<X>30</X><Y>90</Y>
+					<Label><X>10</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<NumericType><![CDATA[double]]></NumericType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[5d]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1446233205523</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1446234081195</Id>
+					<Name><![CDATA[VerfügbareMitarbeiterStart]]></Name>
+					<X>520</X><Y>120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<NumericType><![CDATA[double]]></NumericType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1446234081193</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1446236516289</Id>
+					<Name><![CDATA[S_Goal]]></Name>
+					<X>755</X><Y>913</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<NumericType><![CDATA[double]]></NumericType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[200]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1446236516287</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1446236516292</Id>
+					<Name><![CDATA[ATF]]></Name>
+					<X>895</X><Y>723</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<NumericType><![CDATA[double]]></NumericType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[10]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1446236516290</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 			</Variables>
 			<Dependences>
 				<Link SourceId="1446214924388" TargetId="1446031338009" Polarity="null">
@@ -2004,7 +2154,7 @@ VerfügbareMitarbeiter]]></Formula>
 					<Delay>false</Delay>
 				</Link>
 				<Link SourceId="1446031338057" TargetId="1446031338015" Polarity="null">
-					<Height>20.0</Height>
+					<Height>35.802</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>-90</X><Y>120</Y></Direction>
 					<Id>1446031338027</Id>
@@ -2094,7 +2244,7 @@ VerfügbareMitarbeiter]]></Formula>
 					<Delay>false</Delay>
 				</Link>
 				<Link SourceId="1446031338059" TargetId="1446031338015" Polarity="null">
-					<Height>20.0</Height>
+					<Height>-31.884</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>110</X><Y>120</Y></Direction>
 					<Id>1446031338039</Id>
@@ -2126,10 +2276,10 @@ VerfügbareMitarbeiter]]></Formula>
 				<Link SourceId="1446031338011" TargetId="1446031438576" Polarity="null">
 					<Height>276.463</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>255</X><Y>140</Y></Direction>
+					<Direction><X>290</X><Y>140</Y></Direction>
 					<Id>1446031482301</Id>
 					<Name><![CDATA[Integration - Teamdynamik]]></Name>
-					<X>485</X><Y>200</Y>
+					<X>460</X><Y>200</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2141,7 +2291,7 @@ VerfügbareMitarbeiter]]></Formula>
 				<Link SourceId="1446031338061" TargetId="1446031438576" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>130</X><Y>140</Y></Direction>
+					<Direction><X>140</X><Y>140</Y></Direction>
 					<Id>1446031499080</Id>
 					<Name><![CDATA[VerfügbareMitarbeiter - Teamdynamik]]></Name>
 					<X>610</X><Y>200</Y>
@@ -2154,12 +2304,12 @@ VerfügbareMitarbeiter]]></Formula>
 					<Delay>false</Delay>
 				</Link>
 				<Link SourceId="1446031438576" TargetId="1446031338057" Polarity="null">
-					<Height>20.0</Height>
+					<Height>6.706</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-160</X><Y>20</Y></Direction>
+					<Direction><X>-170</X><Y>20</Y></Direction>
 					<Id>1446031510713</Id>
 					<Name><![CDATA[Teamdynamik - Interaktionsverlust]]></Name>
-					<X>740</X><Y>340</Y>
+					<X>750</X><Y>340</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2274,7 +2424,7 @@ VerfügbareMitarbeiter]]></Formula>
 					<Delay>false</Delay>
 				</Link>
 				<Link SourceId="1446209425164" TargetId="1446031338057" Polarity="null">
-					<Height>-226.753</Height>
+					<Height>-216.536</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>100</X><Y>-260</Y></Direction>
 					<Id>1446211380712</Id>
@@ -2291,7 +2441,7 @@ VerfügbareMitarbeiter]]></Formula>
 				<Link SourceId="1446031338009" TargetId="1446031438576" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>30</X><Y>140</Y></Direction>
+					<Direction><X>40</X><Y>140</Y></Direction>
 					<Id>1446212874452</Id>
 					<Name><![CDATA[Fluktation - Teamdynamik]]></Name>
 					<X>710</X><Y>200</Y>
@@ -2326,6 +2476,96 @@ VerfügbareMitarbeiter]]></Formula>
 					<Name><![CDATA[FluktuationAufstockung - Aufstockungsrate]]></Name>
 					<X>420</X><Y>-20</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446233205525" TargetId="1446216230482" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>90</X><Y>50</Y></Direction>
+					<Id>1446233229423</Id>
+					<Name><![CDATA[Einstellungsverzögerung - Aufstockungsrate]]></Name>
+					<X>30</X><Y>90</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446234081195" TargetId="1446031338061" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>90</X><Y>80</Y></Direction>
+					<Id>1446234071069</Id>
+					<Name><![CDATA[VerfügbareMitarbeiterStart - VerfügbareMitarbeiter]]></Name>
+					<X>520</X><Y>120</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446236516289" TargetId="1446236516294" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>130</X><Y>-30</Y></Direction>
+					<Id>1446236516273</Id>
+					<Name><![CDATA[S_Goal - Discrepancy]]></Name>
+					<X>755</X><Y>913</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446236516296" TargetId="1446236516294" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>0</X><Y>70</Y></Direction>
+					<Id>1446236516275</Id>
+					<Name><![CDATA[S - Discrepancy]]></Name>
+					<X>885</X><Y>813</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446236516292" TargetId="1446236516271" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-110</X><Y>90</Y></Direction>
+					<Id>1446236516277</Id>
+					<Name><![CDATA[ATF - flow]]></Name>
+					<X>895</X><Y>723</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1446236516294" TargetId="1446236516271" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-100</X><Y>-70</Y></Direction>
+					<Id>1446236516286</Id>
+					<Name><![CDATA[Discrepancy - flow]]></Name>
+					<X>885</X><Y>883</Y>
+					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
@@ -2428,9 +2668,13 @@ VerfügbareMitarbeiter]]></Formula>
 						<Name><![CDATA[employees]]></Name>
 						<Type><![CDATA[double]]></Type>
 					</Parameter>
-					<Body><![CDATA[double teamdyn = (employees / (new DaysOfMonth().getDaysOfMonth(this.date())))
-/ (fluctuation + integration);
-double factor = 40;
+					<Body><![CDATA[double teamdyn = employees /
+(30 * fluctuation * FluctuationUtil.getInstance("fluct").
+getFluctFactor(fluctuation, time()) + 
+30 * integration * FluctuationUtil.getInstance("integ").
+getFluctFactor(integration, time()));
+
+double factor = 6;
 double teamdyn_1 = teamdyn / factor;
 if (teamdyn_1 < 0.5) {
 	teamdyn_1 = 0.5;
@@ -2442,7 +2686,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1446217519327</Id>
 					<Name><![CDATA[NichtNegativ]]></Name>
-					<X>40</X><Y>440</Y>
+					<X>40</X><Y>420</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2458,7 +2702,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 				<TableFunction AccessType="public" StaticFunction="true">
 					<Id>1446032128239</Id>
 					<Name><![CDATA[InteraktionsverlustFunktion]]></Name>
-					<X>40</X><Y>340</Y>
+					<X>40</X><Y>330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2488,7 +2732,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 				<TableFunction AccessType="public" StaticFunction="true">
 					<Id>1446047801280</Id>
 					<Name><![CDATA[Integrationsverluste_MIE]]></Name>
-					<X>40</X><Y>370</Y>
+					<X>40</X><Y>360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2520,7 +2764,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 				<TableFunction AccessType="public" StaticFunction="true">
 					<Id>1446211942722</Id>
 					<Name><![CDATA[Integrationsgewinn_VM]]></Name>
-					<X>40</X><Y>400</Y>
+					<X>40</X><Y>390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2620,7 +2864,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
+						<Code><![CDATA[0.5]]></Code>
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -2674,15 +2918,15 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<SamplesToKeep>100</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<SamplesToKeep>500</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[200]]></TimeWindowExpression>
 					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimePlot>
     			<TimeStackChart>
 					<Id>1446031338003</Id>
 					<Name><![CDATA[chart]]></Name>
-					<X>1000</X><Y>360</Y>
+					<X>1000</X><Y>640</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2695,7 +2939,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
+						<Code><![CDATA[0.5]]></Code>
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -2726,7 +2970,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 					<ShowLegend>true</ShowLegend>
 					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
 					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<TimeWindowExpression><![CDATA[200]]></TimeWindowExpression>
 					<DatasetExpression>
 					<Expression><![CDATA[my_dataset]]></Expression>
 					<Color>-7667573</Color>
@@ -2741,7 +2985,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 					<Expression2Flag>true</Expression2Flag>  
 							<Title><![CDATA[VerfügbareMitarbeiter]]></Title>
 					</DatasetExpression>
-					<SamplesToKeep>100</SamplesToKeep>
+					<SamplesToKeep>500</SamplesToKeep>
 					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
 					<VerScaleType>AUTO</VerScaleType>
 					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
@@ -2750,7 +2994,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
     			<TimeStackChart>
 					<Id>1446031338007</Id>
 					<Name><![CDATA[chart1]]></Name>
-					<X>1000</X><Y>680</Y>
+					<X>1400</X><Y>640</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2763,7 +3007,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
+						<Code><![CDATA[0.5]]></Code>
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -2794,7 +3038,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 					<ShowLegend>true</ShowLegend>
 					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
 					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<TimeWindowExpression><![CDATA[200]]></TimeWindowExpression>
 					<DatasetExpression>
 					<Expression><![CDATA[my_dataset]]></Expression>
 					<Color>-65281</Color>
@@ -2809,7 +3053,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 					<Expression2Flag>true</Expression2Flag>  
 							<Title><![CDATA[ErledigteArbeit]]></Title>
 					</DatasetExpression>
-					<SamplesToKeep>100</SamplesToKeep>
+					<SamplesToKeep>500</SamplesToKeep>
 					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
 					<VerScaleType>AUTO</VerScaleType>
 					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
@@ -2831,7 +3075,7 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
+						<Code><![CDATA[0.5]]></Code>
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -2885,8 +3129,215 @@ return teamdyn_1 > 2 ? 2 : teamdyn_1;]]></Body>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<SamplesToKeep>100</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<SamplesToKeep>500</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[200]]></TimeWindowExpression>
+					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1446234399128</Id>
+					<Name><![CDATA[plot2]]></Name>
+					<X>1400</X><Y>320</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1446105600000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[0.5]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>420</Width>
+					<Height>330</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>340</Width>
+						<Height>240</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<Persistent>true</Persistent>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[Gesamtproduktionsleistung]]></Title>
+					<Expression><![CDATA[my_dataset1]]></Expression>
+					<Color>-16776961</Color>
+					<Expression2><![CDATA[Gesamtproduktionsleistung]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<SamplesToKeep>500</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[200]]></TimeWindowExpression>
+					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1446235160458</Id>
+					<Name><![CDATA[plot3]]></Name>
+					<X>1000</X><Y>320</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1446105600000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[0.5]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>420</Width>
+					<Height>330</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>340</Width>
+						<Height>240</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<Persistent>true</Persistent>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[Integrationskosten]]></Title>
+					<Expression><![CDATA[my_dataset]]></Expression>
+					<Color>-16744320</Color>
+					<Expression2><![CDATA[Integrationskosten]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[Interaktionsverlust]]></Title>
+					<Expression><![CDATA[my_dataset1]]></Expression>
+					<Color>-8388608</Color>
+					<Expression2><![CDATA[Interaktionsverlust]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<SamplesToKeep>500</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[200]]></TimeWindowExpression>
+					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1446240316103</Id>
+					<Name><![CDATA[plot4]]></Name>
+					<X>1780</X><Y>320</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1446105600000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[0.5]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>420</Width>
+					<Height>330</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>340</Width>
+						<Height>240</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<Persistent>true</Persistent>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[Teamdynamik]]></Title>
+					<Expression><![CDATA[my_dataset2]]></Expression>
+					<Color>-29696</Color>
+					<Expression2><![CDATA[Teamdynamik]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<SamplesToKeep>500</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[200]]></TimeWindowExpression>
 					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimePlot>
@@ -3258,9 +3709,6 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[OffeneArbeitStart]]></ParameterName>
-					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[50000]]></Code>
-					</ParameterValue>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[Leistungsfaktor_MIE]]></ParameterName>
@@ -3273,6 +3721,18 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[FluktuationAufstockung]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[Einstellungsverzögerung]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[VerfügbareMitarbeiterStart]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[S_Goal]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[ATF]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties 
@@ -3317,20 +3777,26 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 	<JavaClasses>
 		<!--   =========   Java Class   ========  -->
 		<JavaClass>
-			<Id>1446214795304</Id>
+			<Id>1446241811972</Id>
 			<Name><![CDATA[DaysOfMonth]]></Name>
 			<Text><![CDATA[import java.time.YearMonth;
 /**
  * DaysOfMonth
  */	
 public class DaysOfMonth implements Serializable {
-
+	
 	private int previousMonth;
 	private int previousDaysOfMonth;
-    /**
-     * Default constructor
-     */
-    public DaysOfMonth() {
+	private static DaysOfMonth instance;
+	
+	public static DaysOfMonth getInstance() {
+		if (instance == null) {
+			instance = new DaysOfMonth();
+		}
+		return instance;
+	}
+	
+    private DaysOfMonth() {
     	previousMonth = 0;
     	previousDaysOfMonth = 0;
     }
@@ -3347,6 +3813,67 @@ public class DaysOfMonth implements Serializable {
     	previousMonth = month;
     	previousDaysOfMonth = ym.lengthOfMonth();
     	return previousDaysOfMonth;
+    }
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+	/**
+	 * This number is here for model snapshot storing purpose<br>
+	 * It needs to be changed when this class gets changed
+	 */ 
+	private static final long serialVersionUID = 1L;
+
+}]]></Text>
+		</JavaClass>
+		<!--   =========   Java Class   ========  -->
+		<JavaClass>
+			<Id>1446274599536</Id>
+			<Name><![CDATA[FluctuationUtil]]></Name>
+			<Text><![CDATA[/**
+ * FluctuationUtil
+ */	
+public class FluctuationUtil implements Serializable {
+
+	private static Map<String, FluctuationUtil> instances = new HashMap();
+	private String name;
+	private double timeWithGivenFluct;
+	private double currentFluct;
+	private double timeRange;
+	private double previousStartTime;
+	
+	public static FluctuationUtil getInstance(String name) {
+		if (instances.get(name) == null) {
+			instances.put(name, new FluctuationUtil(name));
+		}
+		return instances.get(name);
+	}
+	
+    /**
+     * Default constructor
+     */
+    private FluctuationUtil(String name) {
+    	this.name = name;
+    	timeWithGivenFluct = 0;
+    	currentFluct = 0;
+    	timeRange = 30;
+    	previousStartTime = 0;
+    }
+    
+    public double getFluctFactor(double fluct, double time) {
+    	if (!(fluct < 1.2 * currentFluct && fluct > 0.8 * currentFluct) 
+    			&& !(fluct == 0 && currentFluct == 0)) {
+    		timeWithGivenFluct = 0;
+    		currentFluct = fluct;
+    		previousStartTime = time;
+    	}
+    	timeWithGivenFluct = (time - previousStartTime) > timeRange ?
+    			timeRange : (time - previousStartTime);
+
+    	return timeWithGivenFluct / timeRange < 0.1 ? 
+    			0.1 : timeWithGivenFluct / timeRange;
     }
 
 	@Override
