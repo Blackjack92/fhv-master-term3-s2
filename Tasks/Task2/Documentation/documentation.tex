@@ -44,23 +44,36 @@ fleqn,
  \pagenumbering{arabic} 
 
 \subsection*{Einleitende Worte}
-Die offene Arbeit wird in Stunden angegeben. Arbeitet ein Mitarbeit zu $100$\% am Projekt, dann schafft er es acht (Leistungsumrechnungfaktor) Stunden pro Tag abzuarbeiten.
-Da ein Mitarbeiter aber nie zu $100$\% am Projekt arbeiten kann, gibt es die Leistungsfaktoren. Alle im Model verwendeten Funktionen sind in Prozent angegeben und mit dem Leistungsumrechnungfaktor verbunden. So bedeutet $Integrationsverluste\_MIE(MitarbeiterInEinarbeitung)$ für $Argument = 2$ und $Value = 12,5$, dass bei zwei Mitarbeitern in Einarbeitung eine Stunde (= 0,125 * 8) pro Tag für die Integration eingeplant werden muss.
-\\ \\
-Annahme: Die Teamdynamik kann den Interaktionsverlust maximal um den Faktor zwei halbieren.
-Interaktion findet auch bei MitarbeiterInEinarbeitung statt. Diese wird jedoch in den Integrationsverlust einbezogen. Wochenenden und Ferien werden nicht modelliert.
+Die Einheit für die Arbeit wurde in Stunden definiert. Alle im Model verwendeten Funktionen (Table Functions) sind in Prozent angegeben und mit dem Leistungsumrechnungfaktor verbunden. So bedeutet beispielsweise \\ $Integrationsverluste\_MIE(MitarbeiterInEinarbeitung)$ für $Argument = 2$ und \\ $Value = 12,5$, dass bei zwei Mitarbeitern in Einarbeitung eine Stunde (= 0,125 * 8) pro Tag für die Integration eingeplant werden muss.
 
 \subsection*{zu a) Ideen hinter der Modellierung}
 \begin{comment}
 a) Versuchen Sie, das Modell soweit zu bringen, daß plausible Simulationsresultate zu beobachten sind. Falls Sie dazu selbständig Information in das Modell hineingebracht haben, die nicht im Buchkapitel angegeben wurden, begründen Sie Ihre Wahl mit vollständigen Sätzen. Suchen Sie auch danach, wo sinnvollerweise realistische Reaktionszeiten einzubauen sind. Bauen Sie sie dann ein und beobachten Sie das Resultat.
 \end{comment}
-Startwerte können dem AnyLogic-Model entnommen werden. \\
-Einzelne Funktionen könnten beschrieben werden: z.B. \\
-$Interaktionsverlust = InteraktionsverlustFunktion(VerfuegbareMitarbeiter)  - Teamdynamik$
-wobei 
-$Teamdynamik = VerfuegbareMitarbeiter/ Integration$
-Mit Erklärung: Warum haben wir und entschieden es so zu modellieren?
-Die Teamdynamik ist abhängig von den VerfügbarenMitarbeitern, je mehr Mitarbeiter desto besser die Teamdynamik (wobei es auch irgendwie ein Maximum geben sollte -> Funktion verwenden). Außerdem je länger die gleichen Mitarbeiter an einem Projekt arbeiten (d.h. je kleiner die Integration), desto größer die Teamdynamik. Deswegen dividiert durch Integration.
+Folgende Beschreibung ist nicht vollständig, sondern beschränkt sich hauptsächlich auf Abweichungen/Erweiterungen zu 'Der Termin'. \\
+
+\textbf{Parameter}: \\
+\textbf{Leistungsumrechnungfaktor}: Wird verwendet um ein Maß für die Arbeit zu definieren. Der Standardwert beträgt acht und bedeutet, dass pro Tag (Model Zeiteinheit) maximal bis zu acht Stunden pro Mitarbeiter verrichtet werden können.
+\textbf{Leistungsfaktor\_VM}: Standard 0.9. Bedeutet, dass ein verfügbarer Mitarbeiter 90\% seiner Arbeitszeit für die Abarbeitung der offenen Arbeit verwendet. 
+\textbf{Leistungsfaktor\_MIE}: Standard 0.2. Analog zu Leistungsfaktor\_VM.
+
+\textbf{Dynamische Variablen}: \\
+\textbf{Integrationskosten}: 
+Die Integrationskosten sind abhängig von den Mitarbeitern in Einarbeitung aber auch von den verfügbaren Mitarbeitern. Je mehr Mitarbeiter in Einarbeitung desto größer die Kosten. Kompensiert werden können diese Kosten durch die verfügbaren Mitarbeiter. Modelliert durch: \\
+$Integrationsverluste\_MIE(MitarbeiterInEinarbeitung)$  \\ 
+$- Integrationsgewinn\_VM(VerfuegbareMitarbeiter)$ (Umrechnungsfaktoren vernachlässigt)
+\textbf{Interaktionsverlust}:
+Modelliert durch: \\
+$InteraktionsverlustFunktion(VerfuegbareMitarbeiter) / Teamdynamik$ \\
+Interaktion findet auch bei Mitarbeitern in Einarbeitung statt. Diese wird jedoch in den Integrationsverlust einbezogen.
+\textbf{Teamdynamik}:
+Die Teamdynamik ist als Funktion der Fluktuation, Integration und verfügbaren Mitarbeiter modelliert. Dabei wird eine Funktion verwendet, die der Fluktuation und Integration auch noch eine Abhängigkeit der Zeit zuordnet. Damit wird erreicht, dass eine sich stark ändernde Fluktuation bzw. Integration keine sofortige 100 prozentige Auswirkung auf die Teamdynamik hat. Die Abbildung erfolgt dabei linear und nach einer einmonatigen konstanten Rate werden die 100\% erreicht.
+Es findet außerdem ein Mapping statt, dass die berechneten Werte auf den Bereich 0.5-2 einschränkt, weil die Teamdynamik bei den Interaktionsverlusten im Nenner steht. Schlechte Teamdynamik könnte damit auch zu erhöhten Interaktionsverlusten führen bzw. maximal um den Faktor zwei halbieren.
+\textbf{MIE}: Die Summe der Arbeit in Stunden die von allen Mitarbeitern in Einführung pro Tag verrichtet wird.
+\textbf{VM}: Analog zu MIE.
+
+\textbf{Delays}: \\
+Es wurde ein Delay eingeführt, dass nicht sofort nach der Kündigung eines Mitarbeiters ein neuer Mitarbeiter eingeführt wird (Einstellungsverzögerung).
 
 
 \subsection*{zu b) Variation der Integration und Teamdynamik}
@@ -83,17 +96,26 @@ darauf zu achten, dass Abweichungen zu den dort dargestellten Modellen bestehen.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{./images/Model1_Seite14}
-  \caption{Model Stage 2 (vergleiche Seite 14 'Der Termin')}
-  \label{fig:Model_Seite_14}
+  \includegraphics[width=1\textwidth]{./images/Model1_Seite16}
+  \caption{Ergebnis des erweiterten Models (vergleiche Seite 16 'Der Termin')}
+  \label{fig:Model_Seite_16}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{./images/Model1_Seite16}
-  \caption{Model Stage 3 (vergleiche Seite 16 'Der Termin')}
-  \label{fig:Model_Seite_16}
+  \includegraphics[width=1\textwidth]{./images/Model1_Seite16_Einarbeitungszeit30}
+  \caption{Einarbeitungszeit 30 (statt 60)}
+  \label{fig:Model_Seite_16_EZ30}
 \end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{./images/Model1_Seite16_Einarbeitungszeit30_TeamDynInfluenceFactor10}
+  \caption{Einarbeitungszeit 30 (statt 60) und kleinerem Einfluss der Teamdynamik}
+  \label{fig:Model_Seite_16_EZ30_Td10}
+\end{figure}
+
+
 
 \appendix  
 \bibliographystyle{plain}
