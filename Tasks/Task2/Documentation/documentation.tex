@@ -2,7 +2,7 @@
 a4paper,   
 headsepline, 
 fleqn,     
-12pt
+11pt
 ]{scrartcl}
 
 %%% ngerman: language set to new-german
@@ -13,6 +13,8 @@ fleqn,
 
 %%% Graphic stuff
 \usepackage{graphicx}
+\usepackage{geometry}
+\geometry{verbose,a4paper,tmargin=25mm,bmargin=25mm,lmargin=15mm,rmargin=20mm}
 \usepackage{amsmath,amssymb,amstext}
 \usepackage{units}
 \usepackage{scrpage2}
@@ -44,13 +46,13 @@ fleqn,
  \pagenumbering{arabic} 
 
 \subsection*{Einleitende Worte}
-Die Einheit für die Arbeit wurde in Stunden definiert. Alle im Model verwendeten Funktionen (Table Functions) sind in Prozent angegeben und mit dem Leistungsumrechnungfaktor verbunden. So bedeutet beispielsweise \\ $Integrationsverluste\_MIE(MitarbeiterInEinarbeitung)$ für $Argument = 2$ und \\ $Value = 12,5$, dass bei zwei Mitarbeitern in Einarbeitung eine Stunde (= 0,125 * 8) pro Tag für die Integration eingeplant werden muss.
+Die Einheit für die Arbeit wurde in Stunden definiert. Alle im Model verwendeten Funktionen (Table Functions) sind in Prozent angegeben und mit dem Leistungsumrechnungfaktor verbunden. So bedeutet beispielsweise $Integrationsverluste\_MIE(MitarbeiterInEinarbeitung)$ für $Argument = 2$ und $Value = 12,5$ (Einheit \%), dass bei zwei Mitarbeitern in Einarbeitung eine Stunde (= 0,125 * 8) pro Tag für die Integration eingeplant werden muss.
 
 \subsection*{zu a) Ideen hinter der Modellierung}
 \begin{comment}
 a) Versuchen Sie, das Modell soweit zu bringen, daß plausible Simulationsresultate zu beobachten sind. Falls Sie dazu selbständig Information in das Modell hineingebracht haben, die nicht im Buchkapitel angegeben wurden, begründen Sie Ihre Wahl mit vollständigen Sätzen. Suchen Sie auch danach, wo sinnvollerweise realistische Reaktionszeiten einzubauen sind. Bauen Sie sie dann ein und beobachten Sie das Resultat.
 \end{comment}
-Folgende Beschreibung ist nicht vollständig, sondern beschränkt sich hauptsächlich auf Abweichungen/Erweiterungen zu 'Der Termin'. \\
+Folgende Beschreibung ist nicht vollständig, sondern beschränkt sich hauptsächlich auf Abweichungen bzw. Erweiterungen zu 'Der Termin'. \\
 
 \textbf{Parameter}: \\
 \textbf{Leistungsumrechnungfaktor}: Wird verwendet um ein Maß für die Arbeit zu definieren. Der Standardwert beträgt acht und bedeutet, dass pro Tag (Model Zeiteinheit) maximal bis zu acht Stunden pro Mitarbeiter verrichtet werden können.
@@ -59,9 +61,8 @@ Folgende Beschreibung ist nicht vollständig, sondern beschränkt sich hauptsächli
 
 \textbf{Dynamische Variablen}: \\
 \textbf{Integrationskosten}: 
-Die Integrationskosten sind abhängig von den Mitarbeitern in Einarbeitung aber auch von den verfügbaren Mitarbeitern. Je mehr Mitarbeiter in Einarbeitung desto größer die Kosten. Kompensiert werden können diese Kosten durch die verfügbaren Mitarbeiter. Modelliert durch: \\
-$Integrationsverluste\_MIE(MitarbeiterInEinarbeitung)$  \\ 
-$- Integrationsgewinn\_VM(VerfuegbareMitarbeiter)$ (Umrechnungsfaktoren vernachlässigt)
+Die Integrationskosten sind abhängig von den Mitarbeitern in Einarbeitung aber auch von den verfügbaren Mitarbeitern. Je mehr Mitarbeiter in Einarbeitung desto größer die Kosten. Kompensiert werden können diese Kosten durch die verfügbaren Mitarbeiter. Modelliert durch: 
+$Integrationsverluste\_MIE(MitarbeiterInEinarbeitung)$ \\ $- Integrationsgewinn\_VM(VerfuegbareMitarbeiter)$ (Umrechnungsfaktoren vernachlässigt) \\
 \textbf{Interaktionsverlust}:
 Modelliert durch: \\
 $InteraktionsverlustFunktion(VerfuegbareMitarbeiter) / Teamdynamik$ \\
@@ -80,6 +81,8 @@ Es wurde ein Delay eingeführt, dass nicht sofort nach der Kündigung eines Mitarb
 \begin{comment}
 b) Variieren Sie Integrationszeit (also die entsprechende Rate),und die Wirkung der Teamdynamik in einem sinnvollen Bereich, und beschreiben Sie verbal und mit einem Graphen/Plot die beobachteten Veränderungen im System. Geben Sie einen Erklärungsversuch.
 \end{comment}
+
+Die vorgenommen Simulationsergebnisse wurden im Anhang als Grafiken beigefügt (Abbildung: \ref{fig:Model_Seite_16}, \ref{fig:Model_Seite_16_EZ30} und  \ref{fig:Model_Seite_16_EZ30_Td10}). Aus diesen Simulationen kann abgeleitet werden, das wenn die Einarbeitungszeit kleiner wird die komplette offene Arbeit schneller erledigt wird. Wenn die Einarbeitungszeit größer wird, tritt das Gegenteil ein und die offene Arbeit braucht länger bis sie erledigt ist. Somit besteht eine Auswirkung auf die Gesamtproduktionsleistung, bei größerer Einarbeitungszeit ist die Gesamtproduktionsleistung kleiner und vice versa. Bei einer kleineren Teamdynamik wird die Dauer für das Erledigen der kompletten Arbeit größer, dies entspricht auch der Intuitiven Vorstellung von uns.
 
 \newpage
 
