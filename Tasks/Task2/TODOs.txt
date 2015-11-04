@@ -3,3 +3,5 @@ Dokumentation
 zu a) Beschreibung der Resultate
 
 zu b) weitere/andere Simulationen + Beschreibung der Resultate
+
+Achsenbeschriftungen
