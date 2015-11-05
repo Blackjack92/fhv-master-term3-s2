@@ -1,0 +1,55 @@
+\documentclass[
+a4paper,   
+headsepline, 
+fleqn,     
+11pt
+]{scrartcl}
+
+%%% ngerman: language set to new-german
+\usepackage{ngerman}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%%% Graphic stuff
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{verbose,a4paper,tmargin=25mm,bmargin=25mm,lmargin=15mm,rmargin=20mm}
+\usepackage{amsmath,amssymb,amstext}
+\usepackage{units}
+\usepackage{scrpage2}
+
+%%% comments, ...
+\usepackage{verbatim}
+
+\setlength{\parindent}{0em} 
+
+\newcommand{\mygraphics}[3]{
+  \begin{center}
+    \includegraphics[width=#1, keepaspectratio=true]{#2} \\
+    \textbf{#3}
+  \end{center}
+}
+
+%%%      footer - middle: page number
+\pagestyle{scrheadings}
+
+%%% heading - left
+ \ihead[]{Marco Sohm, Kevin Wallis}
+
+%%% heading - right
+ \ohead[]{Aufgabe 3}
+
+\begin{document}
+
+ \pagenumbering{roman} %% small roman page numbers
+ \pagenumbering{arabic} 
+
+\subsection*{Einleitende Worte}
+Todo 
+
+\appendix  
+\bibliographystyle{plain}
+\bibliography{projekt.bib}
+
+\end{document}
