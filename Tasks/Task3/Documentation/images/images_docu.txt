@@ -1,0 +1,47 @@
+TerminalCount und andere Werte sind immer default (siehe Angabe), wenn nicht anders angegeben
+
+
+Optimization
+500 iterationen
+cpuTimeSlot continuous zw. 0.1 und 0.2
+stop time 60000
+random seed
+10 replicationen
+keine parallele evaluierungen
+
+
+ParameterVariationCPUTimeSlot
+cpuTimeSlot range 0.05 bis 0.2 step 0.001
+stop time 60000
+random seed
+5 replicationen
+keine parallele evaluierungen
+
+
+ParameterVariationCPUTimeSlot_1
+cpuTimeSlot range 0.03 bis 0.8 step 0.05
+rest wie ParameterVariationCPUTimeSlot
+
+ParameterVariationTerminals
+cpu time slot 0.1
+terminals range 1 bis 25 step 1
+stop time 60000
+random seed
+10 replicationen
+keine parallele evaluierungen
+
+
+Simulation_SteadyState und ProcessesAtSeverSimulation
+cpu time slot 0.1
+terminals 10
+swapping time cpu 0.015
+denkzeit exponential mit erwartungswert 25
+cpu time exponential mit erwartungswert 0.8
+stop time 120000
+fixed seed
+
+Simulation__t1000 und ProcessesAtSeverSimulation_t1000
+wie Simulation_SteadyState und ProcessesAtSeverSimulation mit stop time 1000
+
+Simulation__t10000
+stop time 10000

@@ -1,15 +1,9 @@
-Erzeugen von Prozessen mit dazugehörigen Terminal
-Anpassen von Raten
-
 variablen im modell entweder deutsch oder englisch
 
 Sinnvolle Statistiken hinzufügen ... Queue länge, anzahl Prozesse auf dem Server, Average davon,...
 
 zwei Versionen: CPU_2 kann alles "....und zwar potentiell für jedes Terminal verschieden.", 
 		CPU_1 Anzahl terminals kann nicht als parameter mitgegeben werden (fix verdrahtet)
-
-Hier denkt der Benutzer wieder nach und sendet dann den nächsten Job. Wir nehmen an, es gäbe kein natürliches Ende dieser Zyklen.
-Muss der Benutzer auf die Antwort warten bis er den nächsten Job absenden kann oder nicht? (im Moment nicht)
 
 Zeitscheiben werden immer ganz ausgeführt, selbst wenn der Job früher fertig wird (!).
 Muss auch modelliert werden, dass abgebrochen wird, wenn der Job vor Ende der Zeitscheibe fertig ist?!

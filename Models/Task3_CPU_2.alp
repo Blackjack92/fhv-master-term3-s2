@@ -19,7 +19,6 @@
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
 			<IconTopGroupPersistent>true</IconTopGroupPersistent>
-			<Import><![CDATA[import java.time.Instant;]]></Import>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1446711702700</Id>
@@ -200,6 +199,31 @@
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1447259249219</Id>
+					<Name><![CDATA[SwapTime]]></Name>
+					<X>20</X><Y>350</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<NumericType><![CDATA[double]]></NumericType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[0.015]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1447259249217</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 			</Variables>
 			<Connectors>
 				<Connector>
@@ -336,6 +360,9 @@ return avg;]]></Body>
 					<Parameters>
 						<Parameter>
 							<Name><![CDATA[SwappingOverhead]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[SwapTime]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[Zeitscheibendauer]]></Name>
@@ -587,7 +614,7 @@ TerminalsAverageWaitingTime = calcAvg();]]></Code>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[WaitingTime [s]]]></Text>
+					<Text><![CDATA[AvgWaitingTime [s]]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>14</Size>
@@ -621,6 +648,50 @@ TerminalsAverageWaitingTime = calcAvg();]]></Code>
 					<Id>1447251162861</Id>
 					<Name><![CDATA[text7]]></Name>
 					<X>460</X><Y>270</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[AvgProcesses]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1447255160318</Id>
+					<Name><![CDATA[text8]]></Name>
+					<X>960</X><Y>920</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Time [s]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1447255168654</Id>
+					<Name><![CDATA[text9]]></Name>
+					<X>460</X><Y>600</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -760,7 +831,7 @@ TerminalsAverageWaitingTime = calcAvg();]]></Code>
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
 					<DatasetExpression>  
-						<Title><![CDATA[Server.CPUStatistics]]></Title>
+						<Title><![CDATA[Server.CPUStatistics.mean()]]></Title>
 					<Expression><![CDATA[my_dataset]]></Expression>
 					<Color>-32944</Color>
 					<Expression2><![CDATA[Server.CPUStatistics.mean()]]></Expression2>
@@ -788,6 +859,72 @@ TerminalsAverageWaitingTime = calcAvg();]]></Code>
 					</DatasetExpression>
 					<SamplesToKeep>1000000</SamplesToKeep>
 					<TimeWindowExpression><![CDATA[simTime]]></TimeWindowExpression>
+					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1447254859949</Id>
+					<Name><![CDATA[plot]]></Name>
+					<X>440</X><Y>600</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1447315200000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>580</Width>
+					<Height>340</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>500</Width>
+						<Height>250</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<Persistent>true</Persistent>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[Server.ProcessesAtServer]]></Title>
+					<Expression><![CDATA[my_dataset]]></Expression>
+					<Color>-14774017</Color>
+					<Expression2><![CDATA[Server.ProcessesAtServer]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<SamplesToKeep>100000</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[1000]]></TimeWindowExpression>
 					<CustomLabelFormat><![CDATA[dd.MM.yyyy HH:mm:ss]]></CustomLabelFormat>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimePlot>
@@ -1979,8 +2116,7 @@ ProcessesInCPU--;]]></Code>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
 			<IconTopGroupPersistent>true</IconTopGroupPersistent>
-			<Import><![CDATA[import java.util.UUID;
-import java.time.Instant;]]></Import>
+			<Import><![CDATA[import java.util.UUID;]]></Import>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1446711927550</Id>
@@ -2207,9 +2343,7 @@ import java.time.Instant;]]></Import>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
 			<IconTopGroupPersistent>true</IconTopGroupPersistent>
-			<Import><![CDATA[import java.util.UUID;
-import java.time.Instant;
-import java.time.Duration;]]></Import>
+			<Import><![CDATA[import java.util.UUID;]]></Import>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1446716715087</Id>
@@ -3307,12 +3441,18 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[simTime]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[120000]]></Code>
+					</ParameterValue>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[CPUTimeSlot]]></ParameterName>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[TerminalsAverageWaitingTime]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[SwapTime]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties 
@@ -3346,11 +3486,11 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 			</PresentationProperties>
 			<ModelTimeProperties 
 				UseCalendar="false">
-				<StopOption><![CDATA[Never]]></StopOption>
+				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1446681600000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1449273600000]]></FinalDate>	
-				<FinalTime><![CDATA[100.0]]></FinalTime>	
+				<FinalDate><![CDATA[1446801600000]]></FinalDate>	
+				<FinalTime><![CDATA[120000.0]]></FinalTime>	
 			</ModelTimeProperties>
 		</SimulationExperiment>
 		<!--   =========  Optimization Experiment   ========  -->
@@ -3370,7 +3510,7 @@ getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
 			</Frame>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
 			<MaximumMemory>256</MaximumMemory>
-			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
+			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
 			<BeforeEachExperimentRunCode><![CDATA[datasetCurrentObjective.reset();
 datasetBestInfeasibleObjective.reset();
@@ -4263,7 +4403,7 @@ to the clipboard]]></Text>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[WaitingTime [s]]]></Text>
+					<Text><![CDATA[AvgWaitingTime [s]]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>14</Size>
@@ -4426,7 +4566,7 @@ copyToClipboard( s );]]></ActionCode>
 					<Code><![CDATA[0.1]]></Code>
 				</Min>
 				<Max Class="CodeValue">
-					<Code><![CDATA[0.15]]></Code>
+					<Code><![CDATA[0.2]]></Code>
 				</Max>
 				<Step Class="CodeValue">
 					<Code><![CDATA[0.001]]></Code>
@@ -4434,6 +4574,10 @@ copyToClipboard( s );]]></ActionCode>
 			</Parameter>
 			<Parameter>	
 				<Id>1447238752835</Id>
+				<Type>FIXED</Type>
+			</Parameter>
+			<Parameter>	
+				<Id>1447259249219</Id>
 				<Type>FIXED</Type>
 			</Parameter>
 			<ObjectiveFunctionCode><![CDATA[root.TerminalsAverageWaitingTime]]></ObjectiveFunctionCode>
@@ -4452,7 +4596,7 @@ if (isCurrentSolutionBest()) {
 }]]></AfterIterationCode>
 			<AllowParallelEvaluations>false</AllowParallelEvaluations>
 			<ReplicationsProperties>
-				<UseReplication>false</UseReplication>
+				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
 				<ReplicationPerIteration>10</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
@@ -4487,8 +4631,8 @@ if (isCurrentSolutionBest()) {
 				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1446681600000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1446721600000]]></FinalDate>	
-				<FinalTime><![CDATA[40000.0]]></FinalTime>	
+				<FinalDate><![CDATA[1446741600000]]></FinalDate>	
+				<FinalTime><![CDATA[60000.0]]></FinalTime>	
 				<StopAfterIterationCount>true</StopAfterIterationCount>
 				<IterationCount>500</IterationCount>
 				<AutomaticStop>false</AutomaticStop>
@@ -4511,7 +4655,7 @@ if (isCurrentSolutionBest()) {
 			</Frame>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
 			<MaximumMemory>256</MaximumMemory>
-			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
+			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
 			<BeforeSimulationRunCode><![CDATA[IDGenerator.reset();]]></BeforeSimulationRunCode>
 			<AfterSimulationRunCode><![CDATA[AvgTimeReplication.add(root.TerminalsAverageWaitingTime);]]></AfterSimulationRunCode>
@@ -4520,32 +4664,25 @@ if (isCurrentSolutionBest()) {
 			<VmArgs><![CDATA[]]></VmArgs>
 			<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 			<SnapshotFile></SnapshotFile>
+			<Variables>
+				<Variable Class="PlainVariable">
+					<Id>1447255962617</Id>
+					<Name><![CDATA[AvgReplication]]></Name>
+					<X>50</X><Y>240</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+			</Variables>
 			<AnalysisData>
     			<Statistics>
 					<Id>1447240316249</Id>
 					<Name><![CDATA[AvgTimeReplication]]></Name>
 					<X>50</X><Y>210</Y>
-					<Label><X>15</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>true</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1447315200000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</RecurrenceCode>
-					<Discrete>true</Discrete>
-				</Statistics>
-    			<Statistics>
-					<Id>1447240344273</Id>
-					<Name><![CDATA[AvgTimeIteration]]></Name>
-					<X>50</X><Y>240</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4602,7 +4739,7 @@ if (isCurrentSolutionBest()) {
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[WaitingTime [s]]]></Text>
+					<Text><![CDATA[AvgWaitingTime [s]]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>14</Size>
@@ -4666,7 +4803,7 @@ if (isCurrentSolutionBest()) {
 						<Title><![CDATA[AvgTimeIteration.mean()]]></Title>
 					<Expression><![CDATA[my_dataset]]></Expression>
 					<Color>-29696</Color>
-					<Expression2><![CDATA[AvgTimeIteration.mean()]]></Expression2>
+					<Expression2><![CDATA[AvgReplication]]></Expression2>
 					<Expression2Flag>true</Expression2Flag>
 						<PointStyle>CIRCLE</PointStyle>
 						<LineWidth>1.0</LineWidth>
@@ -4679,7 +4816,7 @@ if (isCurrentSolutionBest()) {
     			</Plot>
 			</Charts>
 
-			<AfterIterationCode><![CDATA[AvgTimeIteration.add(AvgTimeReplication.mean());
+			<AfterIterationCode><![CDATA[AvgReplication = AvgTimeReplication.mean();
 AvgTimeReplication.reset();]]></AfterIterationCode>
 			<AllowParallelEvaluations>false</AllowParallelEvaluations>
 			<UseFreeformParameters>false</UseFreeformParameters>
@@ -4696,6 +4833,9 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 			<FreeformParamValue>	
 				<Id>1447238752835</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1447259249219</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1446973920759</Id>
 				<Type>FIXED</Type>
@@ -4708,17 +4848,21 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 				<Id>1447237997099</Id>
 				<Type>RANGE</Type>
 				<From Class="CodeValue">
-					<Code><![CDATA[0.01]]></Code>
+					<Code><![CDATA[0.03]]></Code>
 				</From>
 				<To Class="CodeValue">
-					<Code><![CDATA[1.2]]></Code>
+					<Code><![CDATA[0.8]]></Code>
 				</To>
 				<Step Class="CodeValue">
-					<Code><![CDATA[0.005]]></Code>
+					<Code><![CDATA[0.05]]></Code>
 				</Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1447238752835</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1447259249219</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties 
@@ -4726,8 +4870,8 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1446681600000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1446685600000]]></FinalDate>	
-				<FinalTime><![CDATA[4000.0]]></FinalTime>	
+				<FinalDate><![CDATA[1446741600000]]></FinalDate>	
+				<FinalTime><![CDATA[60000.0]]></FinalTime>	
 			</ModelTimeProperties>
 			<PresentationProperties 
 				EnableAdaptiveFrameManagement="true" 
@@ -4754,7 +4898,7 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>10</ReplicationPerIteration>
+				<ReplicationPerIteration>5</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
 				<MaximumReplication>1000</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
@@ -4779,7 +4923,7 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 			</Frame>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
 			<MaximumMemory>256</MaximumMemory>
-			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
+			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
 			<BeforeSimulationRunCode><![CDATA[IDGenerator.reset();]]></BeforeSimulationRunCode>
 			<AfterSimulationRunCode><![CDATA[AvgTimeReplication.add(root.TerminalsAverageWaitingTime);]]></AfterSimulationRunCode>
@@ -4788,32 +4932,25 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 			<VmArgs><![CDATA[]]></VmArgs>
 			<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 			<SnapshotFile></SnapshotFile>
+			<Variables>
+				<Variable Class="PlainVariable">
+					<Id>1447255836058</Id>
+					<Name><![CDATA[AvgReplication]]></Name>
+					<X>70</X><Y>220</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+			</Variables>
 			<AnalysisData>
     			<Statistics>
 					<Id>1447252175201</Id>
 					<Name><![CDATA[AvgTimeReplication]]></Name>
 					<X>70</X><Y>190</Y>
-					<Label><X>15</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>true</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1447315200000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</RecurrenceCode>
-					<Discrete>true</Discrete>
-				</Statistics>
-    			<Statistics>
-					<Id>1447252175203</Id>
-					<Name><![CDATA[AvgTimeIteration]]></Name>
-					<X>70</X><Y>220</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4870,7 +5007,7 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[WaitingTime [s]]]></Text>
+					<Text><![CDATA[AvgWaitingTime [s]]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>14</Size>
@@ -4934,7 +5071,7 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 						<Title><![CDATA[AvgTimeIteration.mean()]]></Title>
 					<Expression><![CDATA[my_dataset]]></Expression>
 					<Color>-29696</Color>
-					<Expression2><![CDATA[AvgTimeIteration.mean()]]></Expression2>
+					<Expression2><![CDATA[AvgReplication]]></Expression2>
 					<Expression2Flag>true</Expression2Flag>
 						<PointStyle>CIRCLE</PointStyle>
 						<LineWidth>1.0</LineWidth>
@@ -4947,7 +5084,7 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
     			</Plot>
 			</Charts>
 
-			<AfterIterationCode><![CDATA[AvgTimeIteration.add(AvgTimeReplication.mean());
+			<AfterIterationCode><![CDATA[AvgReplication = AvgTimeReplication.mean();
 AvgTimeReplication.reset();]]></AfterIterationCode>
 			<AllowParallelEvaluations>false</AllowParallelEvaluations>
 			<UseFreeformParameters>false</UseFreeformParameters>
@@ -4963,6 +5100,9 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1447238752835</Id>
+			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1447259249219</Id>
 			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1446973920759</Id>
@@ -4989,13 +5129,17 @@ AvgTimeReplication.reset();]]></AfterIterationCode>
 				<Id>1447238752835</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1447259249219</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
 			<ModelTimeProperties 
 				UseCalendar="false">
 				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1446681600000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1446721600000]]></FinalDate>	
-				<FinalTime><![CDATA[40000.0]]></FinalTime>	
+				<FinalDate><![CDATA[1446741600000]]></FinalDate>	
+				<FinalTime><![CDATA[60000.0]]></FinalTime>	
 			</ModelTimeProperties>
 			<PresentationProperties 
 				EnableAdaptiveFrameManagement="true" 
