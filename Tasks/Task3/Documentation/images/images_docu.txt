@@ -1,6 +1,5 @@
 TerminalCount und andere Werte sind immer default (siehe Angabe), wenn nicht anders angegeben
 
-
 Optimization
 500 iterationen
 cpuTimeSlot continuous zw. 0.1 und 0.2
@@ -9,25 +8,12 @@ random seed
 10 replicationen
 keine parallele evaluierungen
 
-
-ParameterVariationCPUTimeSlot
-cpuTimeSlot range 0.05 bis 0.2 step 0.001
+alle ParameterVariationen
+es wurde jeweils der wert in einer gewissen range verändert
+und die anderen parameter wurden auf ihren default-wert eingestellt
 stop time 60000
 random seed
 5 replicationen
-keine parallele evaluierungen
-
-
-ParameterVariationCPUTimeSlot_1
-cpuTimeSlot range 0.03 bis 0.8 step 0.05
-rest wie ParameterVariationCPUTimeSlot
-
-ParameterVariationTerminals
-cpu time slot 0.1
-terminals range 1 bis 25 step 1
-stop time 60000
-random seed
-10 replicationen
 keine parallele evaluierungen
 
 
