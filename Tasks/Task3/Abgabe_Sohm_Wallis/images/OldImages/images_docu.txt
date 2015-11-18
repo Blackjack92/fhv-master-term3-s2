@@ -1,0 +1,7 @@
+Alle Bilder wurden erstellt in einem Model, wo der Benutzer nicht darauf
+wartet, bis sein Prozess/Job wieder bei ihm ankommt, sondern zur beliebigen Zeit
+Prozesse zum Server schickt (auch wenn bereits ein oder mehrere Prozesse vom
+Benutzer am Server sind)
+
+Außerdem war das Modell zu dem Zeitpunkt, als die Bilder aufgenommen wurden,
+womöglich fehlerhaft ^^
